@@ -1,0 +1,23 @@
+{
+  "name": "ontimeserver",
+  "version": "1.0.0",
+  "description": "Server for OnTime capstone app.",
+  "main": "index.js",
+  "scripts": {
+    "test": "dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MahdiurRahman/OnTimeServer.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MahdiurRahman/OnTimeServer/issues"
+  },
+  "homepage": "https://github.com/MahdiurRahman/OnTimeServer#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.8.11"
+  }
+}
