@@ -4,7 +4,8 @@
   "description": "Server for OnTime capstone app.",
   "main": "index.js",
   "scripts": {
-    "test": "dev"
+    "test": "dev",
+    "start": "node app"
   },
   "repository": {
     "type": "git",
@@ -17,7 +18,10 @@
   },
   "homepage": "https://github.com/MahdiurRahman/OnTimeServer#readme",
   "dependencies": {
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "mongoose": "^5.8.11"
+    "mongoose": "^5.8.11",
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.2"
   }
 }
