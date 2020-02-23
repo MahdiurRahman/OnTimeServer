@@ -1,4 +1,5 @@
 const mysql = require("mysql");
+const util = require('util');
 require("dotenv").config();
 
 let config = {
@@ -17,4 +18,9 @@ db.connect(function(err) {
     console.log("SUCCESS: Connected to db as thread id: " + db.threadId);
 });
 
-module.exports = db
+const query = util.promisify(db.query).bind(db);
+
+module.exports = {
+    db,
+    query
+}

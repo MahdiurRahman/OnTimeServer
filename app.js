@@ -1,6 +1,6 @@
 const PORT = process.env.PORT || 8080;
 const express = require("express");
-const db = require("./database/connection");
+const { db } = require("./database/connection");
 
 // Run manual entry commands:
     // require("./database/manual_entry");
