@@ -1,5 +1,6 @@
 const apiRouter = require("express").Router();
 const register = require("../routes/register");
+const login = require("../routes/login");
 const testRoute = require("../routes/testRoute");
 
 apiRouter.get("/", (req, res) => {
@@ -8,6 +9,7 @@ apiRouter.get("/", (req, res) => {
 });
 
 apiRouter.use("/register", register);
+apiRouter.use("/login", login);
 apiRouter.use("/test", testRoute);
 
 module.exports = apiRouter;
