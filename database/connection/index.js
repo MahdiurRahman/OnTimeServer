@@ -18,7 +18,19 @@ db.connect(function(err) {
     console.log("SUCCESS: Connected to db as thread id: " + db.threadId);
 });
 
-const query = util.promisify(db.query).bind(db);
+const query = queryString => new Promise((resolve, reject) => {
+    db.query(queryString, (error, results, fields) => {
+        if (error) {
+            // console.log("...runQuery: ERROR!");
+            (error);
+            reject(error);
+        }
+        else {
+            // console.log("...runQuery: SUCCESS :", results);
+            resolve(results);
+        }
+    })
+})
 
 module.exports = {
     db,
