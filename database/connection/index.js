@@ -1,4 +1,5 @@
 const mysql = require("mysql");
+const util = require('util');
 require("dotenv").config();
 
 let config = {
@@ -17,4 +18,21 @@ db.connect(function(err) {
     console.log("SUCCESS: Connected to db as thread id: " + db.threadId);
 });
 
-module.exports = db
+const query = queryString => new Promise((resolve, reject) => {
+    db.query(queryString, (error, results, fields) => {
+        if (error) {
+            // console.log("...runQuery: ERROR!");
+            (error);
+            reject(error);
+        }
+        else {
+            // console.log("...runQuery: SUCCESS :", results);
+            resolve(results);
+        }
+    })
+})
+
+module.exports = {
+    db,
+    query
+}
