@@ -1,4 +1,4 @@
-const db = require("./connection");
+const { db } = require("./connection");
 
 // Basic query function:
     // Use this instead of db.query in this file, because otherwise it'll get too repetitive.
@@ -30,6 +30,7 @@ const runQuery = queryString => {
 
 // SELECT
 // runQuery("SELECT * FROM users");
+// runQuery("SELECT * FROM users_info");
 
 // DELETE TABLES
 // runQuery("DROP TABLE users");
@@ -38,6 +39,8 @@ const runQuery = queryString => {
 // runQuery("DROP TABLE users_to_private");
 // runQuery("DROP TABLE users_info");
 // runQuery("DELETE FROM users_info WHERE firstName='john'");
+// runQuery("DELETE FROM users WHERE (email='john@email.com') and (id > 1)");
+// runQuery("DELETE FROM users_info WHERE (firstName='john') and (id = 4)");
 
 // OTHERS
 // runQuery("DESCRIBE users");
