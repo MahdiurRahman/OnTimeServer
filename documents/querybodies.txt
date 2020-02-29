@@ -1,0 +1,18 @@
+{
+	"email": "mahdi@email.com",
+	"password": "password"
+}
+
+{
+	"isPrivate": true,
+	"ownerId": 10,
+	"eventName": "work",
+	"startDate": "2020-01-20",
+	"endDate": "2020-08-20",
+	"repeatWeekly": true,
+	"weeklySchedule": "0111110",
+	"time": "09:10:00",
+	"locationName": "Videri",
+	"lat": 42.438948,
+	"lng": -73.3242343
+}

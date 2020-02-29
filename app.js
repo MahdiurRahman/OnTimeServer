@@ -4,7 +4,7 @@ const { db } = require("./database/connection");
 const bodyParser = require("body-parser");
 
 // Run manual entry commands:
-    // require("./database/manual_entry");
+    require("./database/manual_entry");
 
 // 'app' middlewares:
 const app = express();
