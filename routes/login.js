@@ -2,27 +2,40 @@ const { query } = require("../database/connection")
 const login = require("express").Router()
 const bcrypt = require("bcrypt")
 
+
+// This route, the way it is, will have to make several requests to the db. We could try creating a huge query like the one from Raman's class where it gets all the user info and user event info etc. in one request.
 login.post("/", async (req, res) => {
-  let userInfo;
+  let user;
   try {
-    userInfo = await query(`SELECT * FROM users WHERE email = '${req.body.email}';`);
+    user = await query(`SELECT * FROM users WHERE email='${req.body.email}'`);
   } catch (error) {
     res.send(error)
   }
-  // If a user with the specified email exists, check if the hashed password matches the hashed password in the database
-  if (userInfo.length > 0) {
-    const userPassword = userInfo[0].password;
-    bcrypt.compare(req.body.password, userPassword, (error, passwordMatches) => {
-      if (passwordMatches) {
-        return res.send(`Logging in as ${req.body.email} `);
-      } else {
-        return res.send("Email or password is incorrect");
-      }
-    })
-  } // User with the specified email does not exist
-  else {
-    return res.send("Email or password is incorrect");
+
+  // Check if user exists
+  if (user.length <= 0) {
+    res.send(`No user with that email address`);
+    return;
   }
+
+  // Retreive user entry from users_info as well
+  let userInfo;
+  try {
+    userInfo = await query(`SELECT * FROM users_info WHERE id=${user[0].user_info}`)
+  } catch (error) {
+    res.send(error);
+  }
+
+  // Retreive events info
+  let userEvents;
+  try {
+    userEvents = await query(`SELECT * FROM events WHERE ownerId=${user[0].id}`)
+  } catch (error) {
+    res.send(error);
+  }
+
+  // All nessecary information retreive from database. Sent to user:
+  res.send({user, userInfo, userEvents}).status(200);
 })
 
 module.exports = login

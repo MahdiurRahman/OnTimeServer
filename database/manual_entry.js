@@ -19,11 +19,37 @@ const runQuery = queryString => {
 }
 
 // CREATING TABLES
-// runQuery("CREATE TABLE users (id int not null auto_increment primary key, firstName varchar(255) not null, lastName varchar(255) not null, email varchar(255) not null, password varchar(255) not null)");
-// runQuery("CREATE TABLE public_events (id int not null auto_increment primary key, eventName varchar(255), startDate date not null, endDate date not null, attendees int not null, sun boolean not null, mon boolean not null, tue boolean not null, wed boolean not null, thu boolean not null, fri boolean not null, sat boolean not null, time time not null, locationName varchar(255), lng double(15, 12) not null, lat double(15, 12) not null, accessKey varchar(255) not null)");
-// runQuery("CREATE TABLE private_events (id int not null auto_increment primary key, eventName varchar(255), startDate date not null, endDate date not null, capacity int, attendees int not null, sun boolean not null, mon boolean not null, tue boolean not null, wed boolean not null, thu boolean not null, fri boolean not null, sat boolean not null, time time not null, locationName varchar(255), lng double(15, 12) not null, lat double(15, 12) not null)");
-// runQuery("CREATE TABLE users_to_public (id int not null auto_increment primary key, userId int not null, foreign key (userId) references users(id), eventIdPublic int not null, foreign key (eventIdPublic) references public_events(id))");
-// runQuery("CREATE TABLE users_to_private (id int not null auto_increment primary key, userId int not null, foreign key (userId) references users(id), eventIdPrivate int not null, foreign key (eventIdPrivate) references private_events(id), accepted boolean not null, createdOn time not null)");
+
+// runQuery(`CREATE TABLE users (
+//     id int not null auto_increment primary key, 
+//     firstName varchar(255) not null, 
+//     lastName varchar(255) not null, 
+//     email varchar(255) not null, 
+//     password varchar(255) not null)`);
+
+// runQuery(`CREATE TABLE events (
+//     id int not null auto_increment primary key, 
+//     isPrivate bool not null, 
+//     ownerId int not null,
+//         foreign key (ownerId) references users(id), 
+//     eventName varchar(255), 
+//     startDate date not null, 
+//     endDate date not null, 
+//     repeatWeekly bool not null, 
+//     weeklySchedule varchar(7), 
+//     time time not null, 
+//     locationName varchar(255), 
+//     lat double(15, 12) not null, 
+//     lng double(15, 12) not null, 
+//     code varchar(255), 
+//     attendees int)`);
+
+// runQuery(`CREATE TABLE users_to_events (
+//     id int not null auto_increment primary key,
+//     userId int not null,
+//         foreign key (userId) references users(id),
+//     eventId int not null,
+//         foreign key (eventId) references events(id))`)
 
 // ENTERING ROWS
 // runQuery("INSERT INTO users (firstName, lastName, email, password) VALUES ('John', 'Test1', 'john1@email.com', 'password')");
@@ -31,8 +57,10 @@ const runQuery = queryString => {
 // SELECT
 // runQuery("SELECT * FROM users");
 // runQuery("SELECT * FROM users_info");
+// runQuery(`SELECT * FROM events`);
 
 // DELETE TABLES
+// runQuery(`DROP TABLE users_to_events`)
 // runQuery("DROP TABLE users");
 // runQuery("DROP TABLE public_events");
 // runQuery("DROP TABLE private_events");
@@ -41,6 +69,7 @@ const runQuery = queryString => {
 // runQuery("DELETE FROM users_info WHERE firstName='john'");
 // runQuery("DELETE FROM users WHERE (email='john@email.com') and (id > 1)");
 // runQuery("DELETE FROM users_info WHERE (firstName='john') and (id = 4)");
+// runQuery("DELETE FROM events WHERE ownerId=10");
 
 // OTHERS
 // runQuery("DESCRIBE users");
@@ -49,3 +78,4 @@ const runQuery = queryString => {
 // runQuery("DESCRIBE private_events");
 // runQuery("DESCRIBE users_to_public");
 // runQuery("DESCRIBE users_to_private");
+// runQuery(`SELECT * FROM (SELECT * FROM users INNER JOIN users_info ON users.user_info=users_info.id) WHERE email='mahdi@email.com'`)
