@@ -1,10 +1,11 @@
+LOGIN:
 {
 	"email": "mahdi@email.com",
 	"password": "password"
 }
 
+CREATE EVENT:
 {
-	"isPrivate": true,
 	"ownerId": 10,
 	"eventName": "work",
 	"startDate": "2020-01-20",
@@ -15,4 +16,11 @@
 	"locationName": "Videri",
 	"lat": 42.438948,
 	"lng": -73.3242343
+}
+
+
+JOIN EVENT:
+{
+	"userId": 1,
+	"code": "a2103faf-9c77-49b1-9447-04294cb9bc63"
 }
