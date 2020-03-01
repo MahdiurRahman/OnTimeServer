@@ -1,8 +1,8 @@
 const { query } = require("../database/connection");
-const addEvent = require("express").Router();
+const events = require("express").Router();
 const uuid = require("uuid");
 
-addEvent.post("/private", async (req, res) => {
+events.post("/private", async (req, res) => {
 
     // Create entry in events table
     const code = await uuid.v4();
@@ -56,7 +56,7 @@ addEvent.post("/private", async (req, res) => {
     res.send({...req.body, events_insert, user_to_private_insert}).status(200);
 });
 
-addEvent.post("/public", async (req, res) => {
+events.post("/public", async (req, res) => {
 
     // Create entry in events table
     const code = await uuid.v4();
@@ -94,7 +94,7 @@ addEvent.post("/public", async (req, res) => {
         res.send(error)
     }
 
-    // Create entry in users_to_events table
+    // Create entry in users_to_public table
     let user_to_public_insert;
     try {
         user_to_public_insert = await query(`INSERT INTO users_to_public (
@@ -112,4 +112,57 @@ addEvent.post("/public", async (req, res) => {
     res.send({...req.body, event_insert, user_to_public_insert}).status(200);
 });
 
-module.exports = addEvent;
+events.post("/join", async (req, res) => {
+    
+    // Find event matching the code in req.body
+    let event;
+    try {
+        event = await query(`SELECT * FROM events_public WHERE code='${req.body.code}'`)
+    } catch (error) {
+        res.send(error);
+    }
+
+    // If event matching code doesn't exist
+    if (event.length <= 0) {
+        res.send(`This event does not exist`);
+        return;
+    }
+    event = event[0];
+
+    // Check if users_to_public already has entry
+    let user_to_public_entry;
+    try {
+        user_to_public_entry = await query(`SELECT * FROM users_to_public 
+        WHERE
+            userId=${req.body.userId}
+        AND
+            eventId=${event.id}`);
+    } catch (error) {
+        res.send(error);
+    }
+
+    // If users_to_public HAS an entry:
+    if (user_to_public_entry.length > 0) {
+        res.send(`User is already connected to the event`);
+        return;
+    }
+
+    // Create entry in users_to_public table
+    let user_to_public_insert;
+    try {
+        user_to_public_insert = await query(`INSERT INTO users_to_public (
+            userId,
+            eventId
+        )
+        VALUES (
+            ${req.body.userId},
+            ${event.id}
+        )`)
+    } catch (error) {
+        res.send(error);
+    }
+
+    res.send({...req.body, event, user_to_public_insert}).status(200);
+})
+
+module.exports = events;
