@@ -12,6 +12,6 @@ apiRouter.get("/", (req, res) => {
 apiRouter.use("/register", register);
 apiRouter.use("/login", login);
 apiRouter.use("/test", testRoute);
-apiRouter.use("/createEvent", createEvent);
+apiRouter.use("/create", createEvent);
 
 module.exports = apiRouter;
