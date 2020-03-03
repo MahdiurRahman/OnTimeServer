@@ -168,7 +168,19 @@ events.post("/join", async (req, res) => {
         res.send(error);
     }
 
-    res.send({...req.body, event, user_to_public_insert}).status(200);
+    // Update 'attendees' in events_public for this event
+    let update_event_attendees;
+    try {
+        update_event_attendees = await query(`UPDATE events_public 
+        SET
+            attendees=attendees+1
+        WHERE
+            id=${event.id}`)
+    } catch(error) {
+        res.send(error);
+    }
+
+    res.send({...req.body, event, user_to_public_insert, update_event_attendees}).status(200);
 })
 
 module.exports = events;

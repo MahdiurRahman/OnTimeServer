@@ -108,6 +108,7 @@ const runQuery = queryString => {
 // runQuery("DELETE FROM events WHERE ownerId=10");
 // runQuery(`DELETE FROM notifications WHERE eventId=1`)
 // runQuery(`DELETE FROM users_to_public WHERE id=2`)
+// runQuery(`DELETE FROM users_to_public WHERE userId=9`)
 
 // OTHERS
 // runQuery("DESCRIBE users");
