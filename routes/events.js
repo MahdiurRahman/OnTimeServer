@@ -1,5 +1,7 @@
 const { query } = require("../database/connection");
 const events = require("express").Router();
+const edit_private = require("./edit_events/edit_private");
+const edit_public = require("./edit_events/edit_public");
 const uuid = require("uuid");
 
 events.post("/private", async (req, res) => {
@@ -56,6 +58,8 @@ events.post("/private", async (req, res) => {
     res.send({...req.body, events_insert, user_to_private_insert}).status(200);
 });
 
+events.use("/private/edit", edit_private);
+
 events.post("/public", async (req, res) => {
 
     // Create entry in events table
@@ -111,6 +115,8 @@ events.post("/public", async (req, res) => {
 
     res.send({...req.body, event_insert, user_to_public_insert}).status(200);
 });
+
+events.use("/public/edit", edit_public);
 
 events.post("/join", async (req, res) => {
     

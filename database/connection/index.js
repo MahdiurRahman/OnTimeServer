@@ -26,7 +26,7 @@ const query = queryString => new Promise((resolve, reject) => {
             reject(error);
         }
         else {
-            // console.log("...runQuery: SUCCESS :", results);
+            // console.log("...runQuery: SUCCESS:", results);
             resolve(results);
         }
     })
