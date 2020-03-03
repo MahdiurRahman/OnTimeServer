@@ -72,6 +72,16 @@ const runQuery = queryString => {
 //     eventId int not null,
 //         foreign key (eventId) references events_private(id))`)
 
+// runQuery(`CREATE TABLE notifications (
+//     id int not null auto_increment primary key,
+//     userId int not null,
+//         foreign key (userId) references users(id),
+//     eventId int not null,
+//         foreign key (eventId) references events_private(id),
+//     createdOn datetime not null,
+//     message varchar(255)
+// )`)
+
 // ENTERING ROWS
 // runQuery("INSERT INTO users (firstName, lastName, email, password) VALUES ('John', 'Test1', 'john1@email.com', 'password')");
 
@@ -82,6 +92,7 @@ const runQuery = queryString => {
 // runQuery(`SELECT * FROM users_to_private`);
 // runQuery(`SELECT * FROM events_public`);
 // runQuery(`SELECT * FROM users_to_public`);
+// runQuery(`SELECT * FROM notifications`);
 
 // DELETE TABLES
 // runQuery(`DROP TABLE users_to_events`)
@@ -95,6 +106,8 @@ const runQuery = queryString => {
 // runQuery("DELETE FROM users WHERE (email='john@email.com') and (id > 1)");
 // runQuery("DELETE FROM users_info WHERE (firstName='john') and (id = 4)");
 // runQuery("DELETE FROM events WHERE ownerId=10");
+// runQuery(`DELETE FROM notifications WHERE eventId=1`)
+// runQuery(`DELETE FROM users_to_public WHERE id=2`)
 
 // OTHERS
 // runQuery("DESCRIBE users");
