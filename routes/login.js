@@ -18,6 +18,14 @@ login.post("/", async (req, res) => {
     return;
   }
 
+  // check password
+  const userPassword = user[0].password;
+  let result = await bcrypt.compare(req.body.password, userPassword)
+  //!!!^Requires error checking in case bcrypt unable to compare passwords
+  if (!result) {
+    res.send("Email or password is incorrect");
+  }
+
   // Retreive user entry from users_info as well
   let userInfo;
   try {
@@ -29,7 +37,7 @@ login.post("/", async (req, res) => {
   // Retreive events info
   let userEvents;
   try {
-    userEvents = await query(`SELECT * FROM events WHERE ownerId=${user[0].id}`)
+    userEvents = await query(`SELECT * FROM events_private WHERE ownerId=${user[0].id}`)
   } catch (error) {
     res.send(error);
   }
