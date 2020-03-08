@@ -101,6 +101,7 @@ const runQuery = queryString => {
 // runQuery(`SELECT * FROM users_to_private`);
 // runQuery(`SELECT * FROM events_public`);
 // runQuery(`SELECT * FROM users_to_public`);
+// runQuery(`SELECT userId FROM users_to_public WHERE eventId=1`)
 // runQuery(`SELECT * FROM notifications`);
 // runQuery(`SELECT * FROM favorites`);
 
