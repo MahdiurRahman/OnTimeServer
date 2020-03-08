@@ -24,3 +24,31 @@ JOIN EVENT:
 	"userId": 1,
 	"code": "a2103faf-9c77-49b1-9447-04294cb9bc63"
 }
+
+CREATE FAVORITE:
+{
+    "id": 1,
+    "name": "Hunter College",
+    "lat": 40.7678,
+    "lng": -73.9645
+}
+
+EDIT FAVORITE:
+{
+    "id": 4,
+    "changes": {
+	    "name": "Bloomberg NYC HQ",
+	    "lat": 40.7615,
+	    "lng": -73.9677
+    }
+}
+
+GET FAVORITES:
+{
+    "id": 1
+}
+
+DELETE FAVORITE:
+{
+    "id": 3
+}

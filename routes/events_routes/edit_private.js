@@ -22,19 +22,19 @@ edit_private.put("/", async (req, res) => {
 
     // construct sql query string
     const changes = req.body.changes;
-    let sql_columns = "";
+    let sql_query = "";
     const keys = Object.keys(changes);
     for (let i = 0; i < keys.length; i++) {
         if (keys[i] === "code") continue; // just to make sure "code" can't be changed
         let value = (typeof(changes[keys[i]]) === "string" ? ("\'" + changes[keys[i]] + "\'") : changes[keys[i]]);
-        sql_columns += (keys[i] + "=" + value + ", ");
+        sql_query += (keys[i] + "=" + value + ", ");
     }
-    sql_columns = sql_columns.slice(0, -2);
+    sql_query = sql_query.slice(0, -2);
 
     // run the sql query
     let conduct_edit;
     try {
-        conduct_edit = await query(`UPDATE events_private SET ${sql_columns} WHERE id=${req.body.eventId}`);
+        conduct_edit = await query(`UPDATE events_private SET ${sql_query} WHERE id=${req.body.eventId}`);
     } catch (error) {
         res.send(error);
     }
