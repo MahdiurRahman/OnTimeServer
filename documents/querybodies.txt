@@ -52,3 +52,17 @@ DELETE FAVORITE:
 {
     "id": 3
 }
+
+GET USER INFO:
+{
+	"id": 19
+}
+
+EDIT USER INFO:
+{
+	"id": 19,
+	"changes": {
+		"firstName": "Matt",
+		"lastName": "Damon"
+	}
+}
