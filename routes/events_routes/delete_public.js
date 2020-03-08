@@ -2,6 +2,8 @@ const { query } = require("../../database/connection");
 const delete_public = require("express").Router();
 
 delete_public.put("/", async (req, res) => {
+    const body = req.body
+
     // 1. find event
     let event
     try {
@@ -54,7 +56,7 @@ delete_public.put("/", async (req, res) => {
                 '${current_time}',
                 '${message}'`)
         } catch (error) {
-            res.send(error)
+            continue
         }
     }
 
@@ -67,7 +69,7 @@ delete_public.put("/", async (req, res) => {
     }
 
     res.send({
-        ...req.body,
+        ...body,
         event, 
         delete_event,
         notification,
