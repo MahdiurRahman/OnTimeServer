@@ -102,6 +102,7 @@ const runQuery = queryString => {
 // runQuery(`SELECT * FROM events_public`);
 // runQuery(`SELECT * FROM users_to_public`);
 // runQuery(`SELECT * FROM notifications`);
+// runQuery(`SELECT * FROM favorites`);
 
 // DELETE TABLES
 // runQuery(`DROP TABLE users_to_events`)
