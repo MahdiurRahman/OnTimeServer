@@ -82,6 +82,15 @@ const runQuery = queryString => {
 //     message varchar(255)
 // )`)
 
+// runQuery(`CREATE TABLE favorites (
+//     id int not null auto_increment primary key,
+//     userId int not null,
+//         foreign key (userId) references users(id),
+//     name varchar(255) not null,
+//     lat double(15, 12) not null,
+//     lng double(15, 12) not null
+// )`)
+
 // ENTERING ROWS
 // runQuery("INSERT INTO users (firstName, lastName, email, password) VALUES ('John', 'Test1', 'john1@email.com', 'password')");
 
