@@ -67,7 +67,16 @@ edit_public.put("/", async (req, res) => {
         current_time = current_time.toJSON().replace("T", " ").slice(0, -5);
         for (let i = 0; i < users.length; i++) {
             try {
-                query(`INSERT INTO notifications (userId, eventId, createdOn, message) VALUES (${users[i].userId}, ${req.body.eventId}, '${current_time}', '${message}')`);
+                query(`INSERT INTO notifications (
+                    userId,
+                    eventId, 
+                    createdOn, 
+                    message) 
+                VALUES (
+                    ${users[i].userId}, 
+                    ${req.body.eventId}, 
+                    '${current_time}', 
+                    '${message}')`);
             } catch(error) {
                 res.send(error);
             }
