@@ -9,12 +9,12 @@ login.post("/", async (req, res) => {
   try {
     user = await query(`SELECT * FROM users WHERE email='${req.body.email}'`);
   } catch (error) {
-    res.send(error)
+    res.send({"error": error})
   }
-
+  console.log(user)
   // Check if user exists
   if (user.length <= 0) {
-    res.send(`No user with that email address`);
+    res.send({ "authError": "Email or password is incorrect" });
     return;
   }
 
@@ -23,7 +23,7 @@ login.post("/", async (req, res) => {
   let result = await bcrypt.compare(req.body.password, userPassword)
   //!!!^Requires error checking in case bcrypt unable to compare passwords
   if (!result) {
-    res.send("Email or password is incorrect");
+    res.send({ "authError": "Email or password is incorrect" });
   }
 
   // Retreive user entry from users_info as well
@@ -31,7 +31,7 @@ login.post("/", async (req, res) => {
   try {
     userInfo = await query(`SELECT * FROM users_info WHERE id=${user[0].user_info}`)
   } catch (error) {
-    res.send(error);
+    res.send({"error": error});
   }
 
   // Retreive events info
@@ -39,7 +39,7 @@ login.post("/", async (req, res) => {
   try {
     userEvents = await query(`SELECT * FROM events_private WHERE ownerId=${user[0].id}`)
   } catch (error) {
-    res.send(error);
+    res.send({"error": error});
   }
 
   // All nessecary information retreive from database. Sent to user:
