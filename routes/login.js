@@ -29,7 +29,7 @@ login.post("/", async (req, res) => {
   // Retreive user entry from users_info as well
   let userInfo;
   try {
-    userInfo = await query(`SELECT * FROM users_info WHERE id=${user[0].user_info}`)
+    [userInfo] = await query(`SELECT * FROM users_info WHERE id=${user[0].user_info}`)
   } catch (error) {
     res.send({"error": error});
   }
