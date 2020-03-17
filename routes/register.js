@@ -8,12 +8,12 @@ register.post("/", async (req, res) => {
     try {
         duplicates = await query(`SELECT * FROM users WHERE email='${req.body.email}'`);
     } catch (error) {
-        res.send("error").status(404);
+        res.send({"error": error}).status(404);
     }
 
     // 2. check if duplicate
     if (duplicates.length > 0) {
-        res.send("User already exists").status(404);
+        res.send({"duplicateUserError": "User already exists"}).status(404);
         return;
     }
 
@@ -22,7 +22,7 @@ register.post("/", async (req, res) => {
     try {
         user_info = await query(`INSERT INTO users_info (firstName, lastName) VALUES ('${req.body.firstName}', '${req.body.lastName}')`);
     } catch (error) {
-        res.send("error").status(404);
+        res.send({"error": error}).status(404);
     }
 
     // 4. Create new entry in users
@@ -31,7 +31,7 @@ register.post("/", async (req, res) => {
         const password = await bcrypt.hash(req.body.password, 10);
         user = await query(`INSERT INTO users (email, password, user_info) VALUES ('${req.body.email}', '${password}', ${user_info["insertId"]})`);
     } catch (error) {
-        res.send("error").status(404);
+        res.send({"error": error}).status(404);
     }
 
     // 5. Send back user info using req.body
