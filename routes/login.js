@@ -5,6 +5,7 @@ const bcrypt = require("bcrypt")
 
 // This route, the way it is, will have to make several requests to the db. We could try creating a huge query like the one from Raman's class where it gets all the user info and user event info etc. in one request.
 login.post("/", async (req, res) => {
+  console.log(req.body)
   let user;
   try {
     user = await query(`SELECT * FROM users WHERE email='${req.body.email}'`);
