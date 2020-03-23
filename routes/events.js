@@ -9,7 +9,9 @@ const uuid = require("uuid");
 // PRIVATE:
 
     events.post("/private", async (req, res) => {
-
+        // Date format: YYYY-MM-DD
+        // Time format: HH:MM:SS
+        console.log(req.body)
         // Create entry in events table
         const code = await uuid.v4();
         let events_insert;
@@ -30,7 +32,7 @@ const uuid = require("uuid");
             VALUES (
                 ${req.body.ownerId},
                 '${req.body.eventName ? req.body.eventName : "not provided"}',
-                '${req.body.startDate}',
+                '${req.body.startDate}',    
                 '${req.body.endDate}',
                 ${req.body.repeatWeekly},
                 '${req.body.weeklySchedule ? req.body.weeklySchedule : "0000000"}',

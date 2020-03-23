@@ -35,6 +35,7 @@ login.post("/", async (req, res) => {
     res.send({"error": error});
   }
 
+
   // Retreive events info
   let userEvents;
   try {
@@ -43,6 +44,7 @@ login.post("/", async (req, res) => {
     res.send({"error": error});
   }
 
+  user = user[0]
   // All nessecary information retreive from database. Sent to user:
   res.send({user, userInfo, userEvents}).status(200);
 })
