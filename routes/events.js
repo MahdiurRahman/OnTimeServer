@@ -46,16 +46,23 @@ const uuid = require("uuid");
             res.send(error)
         }
 
+        let startLocationName = req.body.startLocationName
         // Create entry in users_to_events table
         let user_to_private_insert;
         try {
             user_to_private_insert = await query(`INSERT INTO users_to_private (
                 userId,
-                eventId
+                eventId,
+                lat,
+                lng,
+                locationName
             )
             VALUES (
                 ${req.body.ownerId},
-                ${events_insert.insertId}
+                ${events_insert.insertId},
+                ${req.body.startLat},
+                ${req.body.startLng},
+                '${req.body.startLocationName}'
             )`)
         } catch (error) {
             res.send(error);
@@ -114,11 +121,17 @@ const uuid = require("uuid");
         try {
             user_to_public_insert = await query(`INSERT INTO users_to_public (
                 userId,
-                eventId
+                eventId,
+                lat,
+                lng,
+                locationName
             )
             VALUES (
                 ${req.body.ownerId},
-                ${event_insert.insertId}
+                ${event_insert.insertId},
+                ${req.body.startLat},
+                ${req.body.startLng},
+                '${req.body.startLocationName}'
             )`)
         } catch (error) {
             res.send(error);
@@ -174,11 +187,11 @@ const uuid = require("uuid");
         try {
             user_to_public_insert = await query(`INSERT INTO users_to_public (
                 userId,
-                eventId
+                eventId,
             )
             VALUES (
                 ${req.body.userId},
-                ${event.id}
+                ${event.id},
             )`)
         } catch (error) {
             res.send(error);
