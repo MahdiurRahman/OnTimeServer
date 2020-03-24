@@ -9,7 +9,9 @@ const uuid = require("uuid");
 // PRIVATE:
 
     events.post("/private", async (req, res) => {
-
+        // Date format: YYYY-MM-DD
+        // Time format: HH:MM:SS
+        console.log(req.body)
         // Create entry in events table
         const code = await uuid.v4();
         let events_insert;
@@ -30,7 +32,7 @@ const uuid = require("uuid");
             VALUES (
                 ${req.body.ownerId},
                 '${req.body.eventName ? req.body.eventName : "not provided"}',
-                '${req.body.startDate}',
+                '${req.body.startDate}',    
                 '${req.body.endDate}',
                 ${req.body.repeatWeekly},
                 '${req.body.weeklySchedule ? req.body.weeklySchedule : "0000000"}',
@@ -44,16 +46,23 @@ const uuid = require("uuid");
             res.send(error)
         }
 
+
         // Create entry in users_to_events table
         let user_to_private_insert;
         try {
             user_to_private_insert = await query(`INSERT INTO users_to_private (
                 userId,
-                eventId
+                eventId,
+                lat,
+                lng,
+                locationName
             )
             VALUES (
                 ${req.body.ownerId},
-                ${events_insert.insertId}
+                ${events_insert.insertId},
+                ${req.body.startLat},
+                ${req.body.startLng},
+                '${req.body.startLocationName}'
             )`)
         } catch (error) {
             res.send(error);
@@ -70,6 +79,7 @@ const uuid = require("uuid");
 // PUBLIC:
 
     events.post("/public", async (req, res) => {
+        console.log(req.body)
 
         // Create entry in events table
         const code = await uuid.v4();
@@ -106,17 +116,23 @@ const uuid = require("uuid");
         } catch (error) {
             res.send(error)
         }
-
+        console.log(event_insert)
         // Create entry in users_to_public table
         let user_to_public_insert;
         try {
             user_to_public_insert = await query(`INSERT INTO users_to_public (
                 userId,
-                eventId
+                eventId,
+                lat,
+                lng,
+                locationName
             )
             VALUES (
                 ${req.body.ownerId},
-                ${event_insert.insertId}
+                ${event_insert.insertId},
+                ${req.body.startLat},
+                ${req.body.startLng},
+                '${req.body.startLocationName}'
             )`)
         } catch (error) {
             res.send(error);
@@ -172,11 +188,11 @@ const uuid = require("uuid");
         try {
             user_to_public_insert = await query(`INSERT INTO users_to_public (
                 userId,
-                eventId
+                eventId,
             )
             VALUES (
                 ${req.body.userId},
-                ${event.id}
+                ${event.id},
             )`)
         } catch (error) {
             res.send(error);
