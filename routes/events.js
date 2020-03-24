@@ -46,7 +46,7 @@ const uuid = require("uuid");
             res.send(error)
         }
 
-        let startLocationName = req.body.startLocationName
+
         // Create entry in users_to_events table
         let user_to_private_insert;
         try {
@@ -79,6 +79,7 @@ const uuid = require("uuid");
 // PUBLIC:
 
     events.post("/public", async (req, res) => {
+        console.log(req.body)
 
         // Create entry in events table
         const code = await uuid.v4();
@@ -115,7 +116,7 @@ const uuid = require("uuid");
         } catch (error) {
             res.send(error)
         }
-
+        console.log(event_insert)
         // Create entry in users_to_public table
         let user_to_public_insert;
         try {
