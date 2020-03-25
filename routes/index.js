@@ -7,6 +7,7 @@ const notifications = require("./notifications_routes/notifications");
 const favorites = require("./favorites");
 const user = require("./user");
 const search = require("./search");
+const account = require("./account.js")
 
 apiRouter.get("/", (req, res) => {
     const res_string = "Welcome to OnTime API's route instructions. You can try the following routes:\n\n\t/api/register\n\t/api/add_event";
@@ -21,5 +22,6 @@ apiRouter.use("/notifications", notifications);
 apiRouter.use("/favorites", favorites);
 apiRouter.use("/user", user);
 apiRouter.use("/search", search);
+apiRouter.use("/account", account);
 
 module.exports = apiRouter;
