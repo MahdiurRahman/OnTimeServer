@@ -29,7 +29,7 @@ login.post("/", async (req, res) => {
   // Retrieve user entry from users_info as well
   let userInfo
   try {
-    ;[userInfo] = await query(`SELECT * FROM users_info WHERE id=${user[0].user_info}`)
+    [userInfo] = await query(`SELECT * FROM users_info WHERE id=${user[0].user_info}`)
   } catch (error) {
     res.send({ error: error })
   }
@@ -40,11 +40,43 @@ login.post("/", async (req, res) => {
     public: [],
   }
   try {
-    events.private = await query(`SELECT * FROM events_private WHERE ownerId=${user[0].id}`)
-    events.public = await query(`SELECT * FROM events_public WHERE ownerId=${user[0].id}`)
+    events.private = await query(
+      `SELECT 
+        id, 
+        ownerId, 
+        eventName, 
+        DATE_FORMAT(startDate,'%Y-%m-%d') AS "startDate", 
+        DATE_FORMAT(endDate,'%Y-%m-%d') AS "endDate",
+        repeatWeekly,
+        weeklySchedule,
+        time,
+        locationName,
+        lat,
+        lng,
+        code
+      FROM events_private WHERE ownerId=${user[0].id}`
+    )
+    events.public = await query(
+      `SELECT 
+        id, 
+        ownerId, 
+        eventName, 
+        DATE_FORMAT(startDate,'%Y-%m-%d') AS "startDate", 
+        DATE_FORMAT(endDate,'%Y-%m-%d') AS "endDate",
+        repeatWeekly,
+        weeklySchedule,
+        time,
+        locationName,
+        lat,
+        lng,
+        code,
+        attendees
+      FROM events_public WHERE ownerId=${user[0].id}`)
   } catch (error) {
     res.send({ error: error })
   }
+
+  console.log(events)
 
   user = user[0]
   // All necessary information retrieve from database. Sent to user:
