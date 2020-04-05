@@ -83,20 +83,37 @@ edit_public.put("/", async (req, res) => {
         }
     }
     else {
-        res.send({"error": "No users other than owner connected to this event. No notifications sent"});
+        //res.send({"error": "No users other than owner connected to this event. No notifications sent"});
     }
     
-    res.send({
-        ...req.body, 
-        event, 
-        conduct_edit, 
-        notification: {
-            userId: req.body.ownerId,
-            eventId: req.body.eventId,
-            current_time,
-            message
-        }
-    })
+    let publicEvents
+  try {
+    publicEvents = await query(
+        `SELECT 
+            id, 
+            ownerId, 
+            eventName, 
+            DATE_FORMAT(startDate,'%Y-%m-%d') AS "startDate", 
+            DATE_FORMAT(endDate,'%Y-%m-%d') AS "endDate",
+            repeatWeekly,
+            weeklySchedule,
+            time,
+            locationName,
+            lat,
+            lng,
+            code,
+            attendees
+        FROM events_public WHERE ownerId=${req.body.ownerId}`
+    )
+  } catch (error) {
+    res.send({ error: error })
+  }
+
+  // send updated list of user's private events
+  res.send({publicEvents}).status(200)
+
+
+
 });
 
 module.exports = edit_public
