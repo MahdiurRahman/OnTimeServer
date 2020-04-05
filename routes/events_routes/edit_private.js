@@ -12,11 +12,11 @@ edit_private.put("/", async (req, res) => {
         AND
             id=${req.body.eventId}`);
     } catch(error) {
-        res.send(error);
+        res.send({"error": error});
     }
 
     if (event.length <= 0) {
-        res.send(`You aren't the owner or event doesn't exist`);
+        res.send({"error": `You aren't the owner of this event or event doesn't exist`});
     }
     event = event[0];
 
@@ -36,7 +36,7 @@ edit_private.put("/", async (req, res) => {
     try {
         conduct_edit = await query(`UPDATE events_private SET ${sql_query} WHERE id=${req.body.eventId}`);
     } catch (error) {
-        res.send(error);
+        res.send({"error": error});
     }
 
     res.send({...req.body, conduct_edit}).status(200);

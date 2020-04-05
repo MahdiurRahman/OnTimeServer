@@ -2,7 +2,7 @@
   "name": "ontimeserver",
   "version": "1.0.0",
   "description": "Server for OnTime capstone app.",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "dev",
     "start": "node app",
