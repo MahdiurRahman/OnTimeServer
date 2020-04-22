@@ -1,0 +1,1351 @@
+{
+	"info": {
+		"_postman_id": "f550d3ec-bb4e-4ff6-96c2-986d04e5921c",
+		"name": "Calls",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"john@email.com\",\n\t\"password\": \"password\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/login",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Private Event",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"ownerId\": 1,\n\t\"eventName\": \"Test Event April 19 2020\",\n\t\"startDate\": \"2020-06-15\",\n\t\"endDate\": \"2020-09-15\",\n\t\"repeatWeekly\": true,\n\t\"weeklySchedule\": \"0111110\",\n\t\"time\": \"10:30:00\",\n\t\"locationName\": \"Flushing Library\",\n\t\"lat\": 40.7578,\n\t\"lng\": -73.8289\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/events/private/edit",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"events",
+						"private",
+						"edit"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Create Private Event",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"ownerId\": 1,\n    \"eventName\": \"Test Event April 19 2020\",\n    \"startDate\": \"2020-06-15\",\n    \"endDate\": \"2020-09-15\",\n    \"repeatWeekly\": true,\n    \"weeklySchedule\": \"0111110\",\n    \"time\": \"10:30:00\",\n    \"locationName\": \"Flushing Library\",\n    \"lat\": 40.7578,\n    \"lng\": -73.8289\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/events/private/edit",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"events",
+								"private",
+								"edit"
+							]
+						}
+					},
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"ownerId\": 1,\n    \"eventName\": \"Test Event April 19 2020\",\n    \"startDate\": \"2020-06-15\",\n    \"endDate\": \"2020-09-15\",\n    \"repeatWeekly\": true,\n    \"weeklySchedule\": \"0111110\",\n    \"time\": \"10:30:00\",\n    \"locationName\": \"Flushing Library\",\n    \"lat\": 40.7578,\n    \"lng\": -73.8289,\n    \"events_insert\": {\n        \"fieldCount\": 0,\n        \"affectedRows\": 1,\n        \"insertId\": 61,\n        \"serverStatus\": 2,\n        \"warningCount\": 0,\n        \"message\": \"\",\n        \"protocol41\": true,\n        \"changedRows\": 0\n    },\n    \"user_to_private_insert\": {\n        \"fieldCount\": 0,\n        \"affectedRows\": 1,\n        \"insertId\": 25,\n        \"serverStatus\": 2,\n        \"warningCount\": 0,\n        \"message\": \"\",\n        \"protocol41\": true,\n        \"changedRows\": 0\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Edit Private Event",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"ownerId\": 1,\n\t\"eventId\": 61,\n\t\"changes\": {\n\t\t\"locationName\": \"Baruch College Library\",\n\t\t\"lat\": 40.7404,\n\t\t\"lng\": -73.9832\n\t}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/events/private/edit",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"events",
+						"private",
+						"edit"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Edit Private Event",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"ownerId\": 1,\n\t\"eventId\": 61,\n\t\"changes\": {\n\t\t\"locationName\": \"Baruch College Library\",\n\t\t\"lat\": 40.7404,\n\t\t\"lng\": -73.9832\n\t}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/events/private/edit",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"events",
+								"private",
+								"edit"
+							]
+						}
+					},
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"privateEvents\": [\n        {\n            \"id\": 61,\n            \"ownerId\": 1,\n            \"eventName\": \"Test Event April 19 2020\",\n            \"startDate\": \"2020-06-15T04:00:00.000Z\",\n            \"endDate\": \"2020-09-15T04:00:00.000Z\",\n            \"repeatWeekly\": 1,\n            \"weeklySchedule\": \"0111110\",\n            \"time\": \"10:30:00\",\n            \"locationName\": \"Baruch College Library\",\n            \"lat\": 40.7404,\n            \"lng\": -73.9832,\n            \"code\": \"97db69c1-979d-4e94-a65e-9e4927149d5c\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete Private Event",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"eventId\": 61,\n\t\"code\": \"97db69c1-979d-4e94-a65e-9e4927149d5c\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/events/private/delete",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"events",
+						"private",
+						"delete"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete Private Event",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"eventId\": 61,\n\t\"code\": \"97db69c1-979d-4e94-a65e-9e4927149d5c\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/events/private/delete",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"events",
+								"private",
+								"delete"
+							]
+						}
+					},
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"eventId\": 61,\n    \"code\": \"97db69c1-979d-4e94-a65e-9e4927149d5c\",\n    \"event\": {\n        \"id\": 61,\n        \"ownerId\": 1,\n        \"eventName\": \"Test Event April 19 2020\",\n        \"startDate\": \"2020-06-15T04:00:00.000Z\",\n        \"endDate\": \"2020-09-15T04:00:00.000Z\",\n        \"repeatWeekly\": 1,\n        \"weeklySchedule\": \"0111110\",\n        \"time\": \"10:30:00\",\n        \"locationName\": \"Baruch College Library\",\n        \"lat\": 40.7404,\n        \"lng\": -73.9832,\n        \"code\": \"97db69c1-979d-4e94-a65e-9e4927149d5c\"\n    },\n    \"delete_event\": {\n        \"fieldCount\": 0,\n        \"affectedRows\": 1,\n        \"insertId\": 0,\n        \"serverStatus\": 2,\n        \"warningCount\": 0,\n        \"message\": \"\",\n        \"protocol41\": true,\n        \"changedRows\": 0\n    },\n    \"delete_users_to_private\": {\n        \"fieldCount\": 0,\n        \"affectedRows\": 0,\n        \"insertId\": 0,\n        \"serverStatus\": 2,\n        \"warningCount\": 0,\n        \"message\": \"\",\n        \"protocol41\": true,\n        \"changedRows\": 0\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Create Public Event",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"ownerId\": 1,\n    \"eventName\": \"Test Event 3 April 20 2020\",\n    \"startDate\": \"2020-06-15\",\n    \"endDate\": \"2020-09-15\",\n    \"repeatWeekly\": true,\n    \"weeklySchedule\": \"0111110\",\n    \"time\": \"10:30:00\",\n    \"locationName\": \"Flushing Library\",\n    \"lat\": 40.7578,\n    \"lng\": -73.8289\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/events/public/create",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"events",
+						"public",
+						"create"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Create Public Event",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"ownerId\": 1,\n    \"eventName\": \"Test Event PUBLIC April 19 2020\",\n    \"startDate\": \"2020-06-15\",\n    \"endDate\": \"2020-09-15\",\n    \"repeatWeekly\": true,\n    \"weeklySchedule\": \"0111110\",\n    \"time\": \"10:30:00\",\n    \"locationName\": \"Flushing Library\",\n    \"lat\": 40.7578,\n    \"lng\": -73.8289\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/events/public/create",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"events",
+								"public",
+								"create"
+							]
+						}
+					},
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"ownerId\": 1,\n    \"eventName\": \"Test Event PUBLIC April 19 2020\",\n    \"startDate\": \"2020-06-15\",\n    \"endDate\": \"2020-09-15\",\n    \"repeatWeekly\": true,\n    \"weeklySchedule\": \"0111110\",\n    \"time\": \"10:30:00\",\n    \"locationName\": \"Flushing Library\",\n    \"lat\": 40.7578,\n    \"lng\": -73.8289,\n    \"event_insert\": {\n        \"fieldCount\": 0,\n        \"affectedRows\": 1,\n        \"insertId\": 23,\n        \"serverStatus\": 2,\n        \"warningCount\": 0,\n        \"message\": \"\",\n        \"protocol41\": true,\n        \"changedRows\": 0\n    },\n    \"user_to_public_insert\": {\n        \"fieldCount\": 0,\n        \"affectedRows\": 1,\n        \"insertId\": 30,\n        \"serverStatus\": 2,\n        \"warningCount\": 0,\n        \"message\": \"\",\n        \"protocol41\": true,\n        \"changedRows\": 0\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Edit Public Event",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"ownerId\": 1,\n    \"eventId\": 23,\n    \"changes\": {\n        \"locationName\": \"Baruch College Library\",\n        \"lat\": 40.7404,\n        \"lng\": -73.9832\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/events/public/edit",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"events",
+						"public",
+						"edit"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Edit Public Event",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"ownerId\": 3,\n    \"eventId\": 27,\n    \"changes\": {\n        \"locationName\": \"Baruch College Library\",\n        \"lat\": 40.7404,\n        \"lng\": -73.9832\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/events/public/edit",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"events",
+								"public",
+								"edit"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "348"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"15c-ZPHkmTM6ldjo66NCbarD2G8SWGE\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 20 Apr 2020 11:13:06 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"publicEvents\": [\n        {\n            \"id\": 27,\n            \"ownerId\": 3,\n            \"eventName\": \"Test Event 4 April 20 2020\",\n            \"startDate\": \"2020-06-15T04:00:00.000Z\",\n            \"endDate\": \"2020-09-15T04:00:00.000Z\",\n            \"repeatWeekly\": 1,\n            \"weeklySchedule\": \"0111110\",\n            \"time\": \"10:30:00\",\n            \"locationName\": \"Baruch College Library\",\n            \"lat\": 40.7404,\n            \"lng\": -73.9832,\n            \"code\": \"f68909a8-17cf-4de1-94cf-151aaec927e5\",\n            \"attendees\": 2\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete Public Event",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"eventId\": 23,\n\t\"code\": \"1bcf4411-ed3e-4eeb-bef0-0cf3b4596a9e\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/events/public/delete",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"events",
+						"public",
+						"delete"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete Public Event",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"eventId\": 23,\n\t\"code\": \"1bcf4411-ed3e-4eeb-bef0-0cf3b4596a9e\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/events/public/delete",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"events",
+								"public",
+								"delete"
+							]
+						}
+					},
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"eventId\": 23,\n    \"code\": \"1bcf4411-ed3e-4eeb-bef0-0cf3b4596a9e\",\n    \"event\": {\n        \"id\": 23,\n        \"ownerId\": 1,\n        \"eventName\": \"Test Event PUBLIC April 19 2020\",\n        \"startDate\": \"2020-06-15T04:00:00.000Z\",\n        \"endDate\": \"2020-09-15T04:00:00.000Z\",\n        \"repeatWeekly\": 1,\n        \"weeklySchedule\": \"0111110\",\n        \"time\": \"10:30:00\",\n        \"locationName\": \"Baruch College Library\",\n        \"lat\": 40.7404,\n        \"lng\": -73.9832,\n        \"code\": \"1bcf4411-ed3e-4eeb-bef0-0cf3b4596a9e\",\n        \"attendees\": 1\n    },\n    \"delete_event\": {\n        \"fieldCount\": 0,\n        \"affectedRows\": 0,\n        \"insertId\": 0,\n        \"serverStatus\": 2,\n        \"warningCount\": 0,\n        \"message\": \"\",\n        \"protocol41\": true,\n        \"changedRows\": 0\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Join Public Event",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"userId\": 1,\n\t\"code\": \"fa3c82e5-3294-4623-9cac-67ab2e6531f4\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/events/join",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"events",
+						"join"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Join Public Event",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"userId\": 1,\n\t\"code\": \"f68909a8-17cf-4de1-94cf-151aaec927e5\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/events/join",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"events",
+								"join"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "736"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"2e0-WGXe6ws9vASNq1VthWJcOeaGUkM\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 20 Apr 2020 11:09:41 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"userId\": 1,\n    \"code\": \"f68909a8-17cf-4de1-94cf-151aaec927e5\",\n    \"event\": {\n        \"id\": 27,\n        \"ownerId\": 3,\n        \"eventName\": \"Test Event 4 April 20 2020\",\n        \"startDate\": \"2020-06-15T04:00:00.000Z\",\n        \"endDate\": \"2020-09-15T04:00:00.000Z\",\n        \"repeatWeekly\": 1,\n        \"weeklySchedule\": \"0111110\",\n        \"time\": \"10:30:00\",\n        \"locationName\": \"Flushing Library\",\n        \"lat\": 40.7578,\n        \"lng\": -73.8289,\n        \"code\": \"f68909a8-17cf-4de1-94cf-151aaec927e5\",\n        \"attendees\": 1\n    },\n    \"user_to_public_insert\": {\n        \"fieldCount\": 0,\n        \"affectedRows\": 1,\n        \"insertId\": 4,\n        \"serverStatus\": 2,\n        \"warningCount\": 0,\n        \"message\": \"\",\n        \"protocol41\": true,\n        \"changedRows\": 0\n    },\n    \"update_event_attendees\": {\n        \"fieldCount\": 0,\n        \"affectedRows\": 1,\n        \"insertId\": 0,\n        \"serverStatus\": 2,\n        \"warningCount\": 0,\n        \"message\": \"(Rows matched: 1  Changed: 1  Warnings: 0\",\n        \"protocol41\": true,\n        \"changedRows\": 1\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Read Notifications",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"userId\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/notifications/read",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"notifications",
+						"read"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Read Notifications",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"userId\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/notifications/read",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"notifications",
+								"read"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "213"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"d5-Ryu8lczQLOais99h5q9GIbrm/ek\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 20 Apr 2020 11:13:23 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"userId\": 1,\n    \"user_notifications\": [\n        {\n            \"id\": 67,\n            \"userId\": 1,\n            \"eventId\": 27,\n            \"createdOn\": \"11:13:06\",\n            \"message\": \"locationName: Flushing Library -> Baruch College Library\\nlat: 40.7578 -> 40.7404\\nlng: -73.8289 -> -73.9832\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete Notification",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"userId\": 1,\n\t\"notificationId\": 67\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/notifications/delete",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"notifications",
+						"delete"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete Notification",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"userId\": 1,\n\t\"notificationId\": 67\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/notifications/delete",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"notifications",
+								"delete"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "385"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"181-wNf34llBXDhTkEgKt1qPtzUTRtM\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 20 Apr 2020 11:19:34 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"userId\": 1,\n    \"notificationId\": 67,\n    \"confirm_notification\": [\n        {\n            \"id\": 67,\n            \"userId\": 1,\n            \"eventId\": 27,\n            \"createdOn\": \"11:13:06\",\n            \"message\": \"locationName: Flushing Library -> Baruch College Library\\nlat: 40.7578 -> 40.7404\\nlng: -73.8289 -> -73.9832\"\n        }\n    ],\n    \"delete_notification\": {\n        \"fieldCount\": 0,\n        \"affectedRows\": 1,\n        \"insertId\": 0,\n        \"serverStatus\": 2,\n        \"warningCount\": 0,\n        \"message\": \"\",\n        \"protocol41\": true,\n        \"changedRows\": 0\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Create Favorites",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"userId\": 1,\n\t\"name\": \"Flushing Library\",\n\t\"lat\": 40.7578,\n\t\"lng\": -73.8289\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/favorites/create",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"favorites",
+						"create"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Create Favorites",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"userId\": 1,\n\t\"name\": \"Flushing Library\",\n\t\"lat\": 40.7578,\n\t\"lng\": -73.8289\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/favorites/create",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"favorites",
+								"create"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "206"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"ce-vICMII3rMqtXZXjgyKDPDZXAxcA\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 22 Apr 2020 00:20:41 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"userId\": 1,\n    \"name\": \"Flushing Library\",\n    \"lat\": 40.7578,\n    \"lng\": -73.8289,\n    \"favorite\": {\n        \"fieldCount\": 0,\n        \"affectedRows\": 1,\n        \"insertId\": 5,\n        \"serverStatus\": 2,\n        \"warningCount\": 0,\n        \"message\": \"\",\n        \"protocol41\": true,\n        \"changedRows\": 0\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Read Favorites",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"userId\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/favorites/read",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"favorites",
+						"read"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Read Favorites",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"userId\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/favorites/read",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"favorites",
+								"read"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "247"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"f7-ZAyISW7FKW1tDZFVV0L+NJEOi4k\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 22 Apr 2020 00:17:28 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"userId\": 1,\n    \"favorites\": [\n        {\n            \"id\": 1,\n            \"userId\": 1,\n            \"name\": \"Baruch College\",\n            \"lat\": 40.7404,\n            \"lng\": -73.9832\n        },\n        {\n            \"id\": 2,\n            \"userId\": 1,\n            \"name\": \"Hunter College\",\n            \"lat\": 40.7678,\n            \"lng\": -73.9645\n        },\n        {\n            \"id\": 4,\n            \"userId\": 1,\n            \"name\": \"Bloomberg NYC HQ\",\n            \"lat\": 40.7615,\n            \"lng\": -73.9677\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Edit Favorites",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"favoriteId\": 5,\n\t\"changes\": {\n\t\t\"name\": \"Baruch College NEW ONE\",\n\t\t\"lat\": \"100\",\n\t\t\"lng\": \"-100\"\n\t}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/favorites/edit",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"favorites",
+						"edit"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Edit Favorites",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"favoriteId\": 5,\n\t\"changes\": {\n\t\t\"name\": \"Baruch College NEW ONE\",\n\t\t\"lat\": \"100\",\n\t\t\"lng\": \"-100\"\n\t}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/favorites/edit",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"favorites",
+								"edit"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "270"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"10e-1aWPcSZzodHhDa9eC+xgqfywSfs\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 22 Apr 2020 00:31:05 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"favoriteId\": 5,\n    \"changes\": {\n        \"name\": \"Baruch College NEW ONE\",\n        \"lat\": \"100\",\n        \"lng\": \"-100\"\n    },\n    \"edit_favorite\": {\n        \"fieldCount\": 0,\n        \"affectedRows\": 1,\n        \"insertId\": 0,\n        \"serverStatus\": 2,\n        \"warningCount\": 0,\n        \"message\": \"(Rows matched: 1  Changed: 1  Warnings: 0\",\n        \"protocol41\": true,\n        \"changedRows\": 1\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete Favorites",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"favoriteId\": 5\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/favorites/delete",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"favorites",
+						"delete"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete Favorites",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"favoriteId\": 5\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/favorites/delete",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"favorites",
+								"delete"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "161"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"a1-4irTY2bOz+YxaD5D684fmIp7J+k\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 22 Apr 2020 00:34:34 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"favoriteId\": 5,\n    \"delete_request\": {\n        \"fieldCount\": 0,\n        \"affectedRows\": 1,\n        \"insertId\": 0,\n        \"serverStatus\": 2,\n        \"warningCount\": 0,\n        \"message\": \"\",\n        \"protocol41\": true,\n        \"changedRows\": 0\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Read Users",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"userInfoId\": 3\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/users/read",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"users",
+						"read"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Read Users",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"userInfoId\": 3\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/users/read",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"read"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "77"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"4d-DDCoQvuNuSr2eXRbki2UCvt6gYc\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 22 Apr 2020 00:45:21 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"userInfoId\": 3,\n    \"user_info\": [\n        {\n            \"id\": 3,\n            \"firstName\": \"john\",\n            \"lastName\": \"adams\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Edit Users",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"userInfoId\": 3,\n\t\"changes\": {\n\t\t\"firstName\": \"John\",\n\t\t\"lastName\": \"Adams\"\n\t}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/users/edit",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"users",
+						"edit"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Edit Users",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"userInfoId\": 3,\n\t\"changes\": {\n\t\t\"firstName\": \"John\",\n\t\t\"lastName\": \"Adams\"\n\t}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/users/edit",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"edit"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "250"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"fa-G896uCkhwWsgBA/9OMSnC/kub5Q\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 22 Apr 2020 00:48:49 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"userInfoId\": 3,\n    \"changes\": {\n        \"firstName\": \"John\",\n        \"lastName\": \"Adams\"\n    },\n    \"conduct_edit\": {\n        \"fieldCount\": 0,\n        \"affectedRows\": 1,\n        \"insertId\": 0,\n        \"serverStatus\": 2,\n        \"warningCount\": 0,\n        \"message\": \"(Rows matched: 1  Changed: 1  Warnings: 0\",\n        \"protocol41\": true,\n        \"changedRows\": 1\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Search Event by Name",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"eventName\": \"Birthday party\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/search/name",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"search",
+						"name"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Search Event by Name",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"eventName\": \"Birthday party\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/search/name",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"search",
+								"name"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "3530"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"dca-tO+KpSS4Xzaj8oNuktd6jsoFXYs\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 22 Apr 2020 01:15:12 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"eventName\": \"Birthday party\",\n    \"events\": [\n        {\n            \"id\": 2,\n            \"ownerId\": 1,\n            \"eventName\": \"Birthday party\",\n            \"startDate\": \"2020-05-21T04:00:00.000Z\",\n            \"endDate\": \"2020-05-21T04:00:00.000Z\",\n            \"repeatWeekly\": 0,\n            \"weeklySchedule\": \"1000000\",\n            \"time\": \"10:55:00\",\n            \"locationName\": \"My house\",\n            \"lat\": 1,\n            \"lng\": 1,\n            \"code\": \"a44ed2a2-6fc5-4f1e-bb1c-7cc367643735\",\n            \"attendees\": 1\n        },\n        {\n            \"id\": 7,\n            \"ownerId\": 1,\n            \"eventName\": \"Birthday party\",\n            \"startDate\": \"2020-05-21T04:00:00.000Z\",\n            \"endDate\": \"2020-05-21T04:00:00.000Z\",\n            \"repeatWeekly\": 0,\n            \"weeklySchedule\": \"1000000\",\n            \"time\": \"10:55:00\",\n            \"locationName\": \"My house\",\n            \"lat\": 1,\n            \"lng\": 1,\n            \"code\": \"2feef83b-79b6-45ff-9799-8659bc373dfb\",\n            \"attendees\": 1\n        },\n        {\n            \"id\": 8,\n            \"ownerId\": 1,\n            \"eventName\": \"Birthday party\",\n            \"startDate\": \"2020-05-21T04:00:00.000Z\",\n            \"endDate\": \"2020-05-21T04:00:00.000Z\",\n            \"repeatWeekly\": 0,\n            \"weeklySchedule\": \"1000000\",\n            \"time\": \"10:55:00\",\n            \"locationName\": \"My house\",\n            \"lat\": 1,\n            \"lng\": 1,\n            \"code\": \"51049d6d-df19-465a-af48-2c32933007d6\",\n            \"attendees\": 1\n        },\n        {\n            \"id\": 9,\n            \"ownerId\": 1,\n            \"eventName\": \"Birthday party\",\n            \"startDate\": \"2020-05-21T04:00:00.000Z\",\n            \"endDate\": \"2020-05-21T04:00:00.000Z\",\n            \"repeatWeekly\": 0,\n            \"weeklySchedule\": \"1000000\",\n            \"time\": \"10:55:00\",\n            \"locationName\": \"My house\",\n            \"lat\": 1,\n            \"lng\": 1,\n            \"code\": \"3f0c461d-4e90-46c3-ad3b-bf6aa119e711\",\n            \"attendees\": 1\n        },\n        {\n            \"id\": 10,\n            \"ownerId\": 1,\n            \"eventName\": \"Birthday party\",\n            \"startDate\": \"2020-05-21T04:00:00.000Z\",\n            \"endDate\": \"2020-05-21T04:00:00.000Z\",\n            \"repeatWeekly\": 0,\n            \"weeklySchedule\": \"1000000\",\n            \"time\": \"10:55:00\",\n            \"locationName\": \"My house\",\n            \"lat\": 1,\n            \"lng\": 1,\n            \"code\": \"cda90db7-c7b4-491e-9a06-6ff4a02f6dfc\",\n            \"attendees\": 1\n        },\n        {\n            \"id\": 12,\n            \"ownerId\": 1,\n            \"eventName\": \"Birthday party\",\n            \"startDate\": \"2020-05-21T04:00:00.000Z\",\n            \"endDate\": \"2020-05-21T04:00:00.000Z\",\n            \"repeatWeekly\": 0,\n            \"weeklySchedule\": \"1000000\",\n            \"time\": \"10:55:00\",\n            \"locationName\": \"My house\",\n            \"lat\": 1,\n            \"lng\": 1,\n            \"code\": \"13374789-560a-463e-8004-21898c7c6111\",\n            \"attendees\": 1\n        },\n        {\n            \"id\": 13,\n            \"ownerId\": 1,\n            \"eventName\": \"Birthday party\",\n            \"startDate\": \"2020-05-21T04:00:00.000Z\",\n            \"endDate\": \"2020-05-21T04:00:00.000Z\",\n            \"repeatWeekly\": 0,\n            \"weeklySchedule\": \"1000000\",\n            \"time\": \"10:55:00\",\n            \"locationName\": \"My house\",\n            \"lat\": 1,\n            \"lng\": 1,\n            \"code\": \"d599cac0-aa85-409e-ba65-3cb98a02e1e2\",\n            \"attendees\": 1\n        },\n        {\n            \"id\": 14,\n            \"ownerId\": 1,\n            \"eventName\": \"Birthday party\",\n            \"startDate\": \"2020-05-21T04:00:00.000Z\",\n            \"endDate\": \"2020-05-21T04:00:00.000Z\",\n            \"repeatWeekly\": 0,\n            \"weeklySchedule\": \"1000000\",\n            \"time\": \"10:55:00\",\n            \"locationName\": \"My house\",\n            \"lat\": 1,\n            \"lng\": 1,\n            \"code\": \"b8a1abb4-25c0-475c-a0d2-7fbd2830faae\",\n            \"attendees\": 1\n        },\n        {\n            \"id\": 15,\n            \"ownerId\": 1,\n            \"eventName\": \"Birthday party\",\n            \"startDate\": \"2020-05-21T04:00:00.000Z\",\n            \"endDate\": \"2020-05-21T04:00:00.000Z\",\n            \"repeatWeekly\": 0,\n            \"weeklySchedule\": \"1000000\",\n            \"time\": \"10:55:00\",\n            \"locationName\": \"My house\",\n            \"lat\": 1,\n            \"lng\": 1,\n            \"code\": \"3de211df-8c7c-41c6-a441-1d7f2767fd77\",\n            \"attendees\": 1\n        },\n        {\n            \"id\": 16,\n            \"ownerId\": 1,\n            \"eventName\": \"Birthday party\",\n            \"startDate\": \"2020-05-21T04:00:00.000Z\",\n            \"endDate\": \"2020-05-21T04:00:00.000Z\",\n            \"repeatWeekly\": 0,\n            \"weeklySchedule\": \"1000000\",\n            \"time\": \"10:55:00\",\n            \"locationName\": \"My house\",\n            \"lat\": 1,\n            \"lng\": 1,\n            \"code\": \"4c58fcf9-2c63-4943-b316-f240f6fb42c6\",\n            \"attendees\": 1\n        },\n        {\n            \"id\": 17,\n            \"ownerId\": 1,\n            \"eventName\": \"Birthday party\",\n            \"startDate\": \"2020-05-21T04:00:00.000Z\",\n            \"endDate\": \"2020-05-21T04:00:00.000Z\",\n            \"repeatWeekly\": 0,\n            \"weeklySchedule\": \"1000000\",\n            \"time\": \"10:55:00\",\n            \"locationName\": \"My house\",\n            \"lat\": 1,\n            \"lng\": 1,\n            \"code\": \"7683b0e4-a8df-4c53-b00a-cc7210660f44\",\n            \"attendees\": 1\n        },\n        {\n            \"id\": 22,\n            \"ownerId\": 17,\n            \"eventName\": \"Birthday party\",\n            \"startDate\": \"2020-05-21T04:00:00.000Z\",\n            \"endDate\": \"2020-05-21T04:00:00.000Z\",\n            \"repeatWeekly\": 0,\n            \"weeklySchedule\": \"1000000\",\n            \"time\": \"10:55:00\",\n            \"locationName\": \"My house\",\n            \"lat\": 1,\n            \"lng\": 1,\n            \"code\": \"fa3c82e5-3294-4623-9cac-67ab2e6531f4\",\n            \"attendees\": 6\n        }\n    ]\n}"
+				}
+			]
+		}
+	],
+	"protocolProfileBehavior": {}
+}

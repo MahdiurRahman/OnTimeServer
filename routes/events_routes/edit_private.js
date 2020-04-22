@@ -2,6 +2,7 @@ const { query } = require("../../database/connection")
 const edit_private = require("express").Router()
 
 edit_private.put("/", async (req, res) => {
+  console.log("api/events/private/edit")
   // confirm if its the event owner
   let event
   try {
@@ -44,22 +45,7 @@ edit_private.put("/", async (req, res) => {
 
   let privateEvents
   try {
-    privateEvents = await query(
-        `SELECT 
-            id, 
-            ownerId, 
-            eventName, 
-            DATE_FORMAT(startDate,'%Y-%m-%d') AS "startDate", 
-            DATE_FORMAT(endDate,'%Y-%m-%d') AS "endDate",
-            repeatWeekly,
-            weeklySchedule,
-            time,
-            locationName,
-            lat,
-            lng,
-            code
-        FROM events_private WHERE ownerId=${req.body.ownerId}`
-    )
+    privateEvents = await query(`SELECT * FROM events_private WHERE ownerId=${req.body.ownerId} AND id=${req.body.eventId}`)
   } catch (error) {
     res.send({ error: error })
   }

@@ -2,6 +2,7 @@ const { query } = require("../../database/connection");
 const edit_favorite = require("express").Router();
 
 edit_favorite.put("/", async (req, res) => {
+    console.log("api/favorites/edit")
     const body = req.body
 
     // 1. generate sql query
@@ -14,10 +15,12 @@ edit_favorite.put("/", async (req, res) => {
     }
     sql_query = sql_query.slice(0, -2);
 
+    // !NOTE: A good check to add would be to check for duplicate favorites by lat and lng.
+
     // 2. run sql query
     let edit_favorite
     try {
-        edit_favorite = await query(`UPDATE favorites SET ${sql_query} WHERE id=${body.id}`)
+        edit_favorite = await query(`UPDATE favorites SET ${sql_query} WHERE id=${body.favoriteId}`)
     } catch (error) {
         res.send(error)
     }
