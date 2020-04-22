@@ -2,6 +2,7 @@ const { query } = require("../../database/connection");
 const edit_public = require("express").Router();
 
 edit_public.put("/", async (req, res) => {
+    console.log("api/events/public/edit")
 
     // 1. confirm if this request was sent from event owner
     let event;
@@ -37,7 +38,7 @@ edit_public.put("/", async (req, res) => {
     sql_query = sql_query.slice(0, -2);
     message = message.slice(0, -1);
 
-    // run sql query string
+    // 3. run sql query string
     let conduct_edit;
     try {
         conduct_edit = await query(`UPDATE events_public SET ${sql_query} WHERE id=${req.body.eventId}`);
@@ -45,7 +46,7 @@ edit_public.put("/", async (req, res) => {
         res.send({"error": error});
     }
 
-    // 3. propogate notifications w/ message:
+    // 4. propogate notifications w/ message:
 
     // find all users connected to this event via users_to_public and make a notifications entry for them
     let users;
@@ -59,8 +60,7 @@ edit_public.put("/", async (req, res) => {
         res.send({"error": error});
     }
 
-    // make sure there are users to notify
-    // iterate through "users" variable and create entries in notifications
+    // 5. iterate through "users" variable and create entries in notifications
     let current_time;
     if (users.length > 0) {
         current_time = new Date();
@@ -82,38 +82,16 @@ edit_public.put("/", async (req, res) => {
             }
         }
     }
-    else {
-        //res.send({"error": "No users other than owner connected to this event. No notifications sent"});
-    }
     
+    // 6. re-query for the event you just edited
     let publicEvents
-  try {
-    publicEvents = await query(
-        `SELECT 
-            id, 
-            ownerId, 
-            eventName, 
-            DATE_FORMAT(startDate,'%Y-%m-%d') AS "startDate", 
-            DATE_FORMAT(endDate,'%Y-%m-%d') AS "endDate",
-            repeatWeekly,
-            weeklySchedule,
-            time,
-            locationName,
-            lat,
-            lng,
-            code,
-            attendees
-        FROM events_public WHERE ownerId=${req.body.ownerId}`
-    )
-  } catch (error) {
-    res.send({ error: error })
-  }
+    try {
+        publicEvents = await query(`SELECT * FROM events_public WHERE id=${req.body.eventId}`)
+    } catch (error) {
+        res.send({ error: error })
+    }
 
-  // send updated list of user's private events
-  res.send({publicEvents}).status(200)
-
-
-
+    res.send({publicEvents}).status(200)
 });
 
 module.exports = edit_public

@@ -1,0 +1,440 @@
+ACCOUNT:
+
+    POST: api/login
+        Needs notifications
+        body: {
+            "email": "john@email.com",
+            "password": "password"
+        }
+
+        response: {
+            "user": {
+                "id": 1,
+                "email": "john@email.com",
+                "password": "$2b$10$nfsT6Px3tGrMJk6Tw3OZvOC8oGRLd8vI7r2IoV3EH0LfjC1N2mk/y",
+                "user_info": 3
+            },
+            "userInfo": {
+                "id": 3,
+                "firstName": "john",
+                "lastName": "adams"
+            },
+            "events": {
+                "private": [
+                    {
+                        "id": 2,
+                        "ownerId": 1,
+                        "eventName": "Birthday party",
+                        "startDate": "2020-05-21",
+                        "endDate": "2020-05-21",
+                        "repeatWeekly": 0,
+                        "weeklySchedule": "1000000",
+                        "time": "10:55:00",
+                        "locationName": "400 East 16th st apt 3A New York, New York",
+                        "lat": 1,
+                        "lng": 1,
+                        "code": "67a7f927-15d7-4417-9570-42d32fa8c7af"
+                    },
+                    ...
+                ],
+                "public": [
+                    {
+                        "id": 2,
+                        "ownerId": 1,
+                        "eventName": "Birthday party",
+                        "startDate": "2020-05-21",
+                        "endDate": "2020-05-21",
+                        "repeatWeekly": 0,
+                        "weeklySchedule": "1000000",
+                        "time": "10:55:00",
+                        "locationName": "My house",
+                        "lat": 1,
+                        "lng": 1,
+                        "code": "a44ed2a2-6fc5-4f1e-bb1c-7cc367643735",
+                        "attendees": 1
+                    },
+                    ...
+                ]
+            }
+        }
+
+
+    POST: api/register
+
+
+PRIVATE EVENTS:
+
+    GET: api/events/private/read
+
+
+    POST: api/events/private/create
+
+        body: {
+            "ownerId": 1,
+            "eventName": "Test Event April 19 2020",
+            "startDate": "2020-06-15",
+            "endDate": "2020-09-15",
+            "repeatWeekly": true,
+            "weeklySchedule": "0111110",
+            "time": "10:30:00",
+            "locationName": "Flushing Library",
+            "lat": 40.7578,
+            "lng": -73.8289
+        }
+
+        response: {
+            "ownerId": 1,
+            "eventName": "Test Event April 19 2020",
+            "startDate": "2020-06-15",
+            "endDate": "2020-09-15",
+            "repeatWeekly": true,
+            "weeklySchedule": "0111110",
+            "time": "10:30:00",
+            "locationName": "Flushing Library",
+            "lat": 40.7578,
+            "lng": -73.8289,
+            "events_insert": {
+                "fieldCount": 0,
+                "affectedRows": 1,
+                "insertId": 61,
+                "serverStatus": 2,
+                "warningCount": 0,
+                "message": "",
+                "protocol41": true,
+                "changedRows": 0
+            },
+            "user_to_private_insert": {
+                "fieldCount": 0,
+                "affectedRows": 1,
+                "insertId": 25,
+                "serverStatus": 2,
+                "warningCount": 0,
+                "message": "",
+                "protocol41": true,
+                "changedRows": 0
+            }
+        }
+
+
+    PUT: api/events/private/edit
+
+        body: {
+            "ownerId": 1,
+            "eventId": 61,
+            "changes": {
+                "locationName": "Baruch College Library",
+                "lat": 40.7404,
+                "lng": -73.9832
+            }
+        }
+
+        response: {
+            "privateEvents": [
+                {
+                    "id": 61,
+                    "ownerId": 1,
+                    "eventName": "Test Event April 19 2020",
+                    "startDate": "2020-06-15T04:00:00.000Z",
+                    "endDate": "2020-09-15T04:00:00.000Z",
+                    "repeatWeekly": 1,
+                    "weeklySchedule": "0111110",
+                    "time": "10:30:00",
+                    "locationName": "Baruch College Library",
+                    "lat": 40.7404,
+                    "lng": -73.9832,
+                    "code": "97db69c1-979d-4e94-a65e-9e4927149d5c"
+                }
+            ]
+        }
+
+
+    PUT: api/events/private/delete
+
+        body: {
+            "eventId": 61,
+            "code": "97db69c1-979d-4e94-a65e-9e4927149d5c"
+        }
+
+        response: {
+            "eventId": 61,
+            "code": "97db69c1-979d-4e94-a65e-9e4927149d5c",
+            "event": {
+                "id": 61,
+                "ownerId": 1,
+                "eventName": "Test Event April 19 2020",
+                "startDate": "2020-06-15T04:00:00.000Z",
+                "endDate": "2020-09-15T04:00:00.000Z",
+                "repeatWeekly": 1,
+                "weeklySchedule": "0111110",
+                "time": "10:30:00",
+                "locationName": "Baruch College Library",
+                "lat": 40.7404,
+                "lng": -73.9832,
+                "code": "97db69c1-979d-4e94-a65e-9e4927149d5c"
+            },
+            "delete_event": {
+                "fieldCount": 0,
+                "affectedRows": 1,
+                "insertId": 0,
+                "serverStatus": 2,
+                "warningCount": 0,
+                "message": "",
+                "protocol41": true,
+                "changedRows": 0
+            },
+            "delete_users_to_private": {
+                "fieldCount": 0,
+                "affectedRows": 0,
+                "insertId": 0,
+                "serverStatus": 2,
+                "warningCount": 0,
+                "message": "",
+                "protocol41": true,
+                "changedRows": 0
+            }
+        }
+
+
+PUBLIC EVENTS:
+
+    GET: api/events/public/read
+
+
+    POST: api/events/public/create
+        *Creates a public event
+
+        body: {
+            "ownerId": 1,
+            "eventName": "Test Event PUBLIC April 19 2020",
+            "startDate": "2020-06-15",
+            "endDate": "2020-09-15",
+            "repeatWeekly": true,
+            "weeklySchedule": "0111110",
+            "time": "10:30:00",
+            "locationName": "Flushing Library",
+            "lat": 40.7578,
+            "lng": -73.8289
+        }
+
+        response: {
+            "ownerId": 1,
+            "eventName": "Test Event PUBLIC April 19 2020",
+            "startDate": "2020-06-15",
+            "endDate": "2020-09-15",
+            "repeatWeekly": true,
+            "weeklySchedule": "0111110",
+            "time": "10:30:00",
+            "locationName": "Flushing Library",
+            "lat": 40.7578,
+            "lng": -73.8289,
+            "event_insert": {
+                "fieldCount": 0,
+                "affectedRows": 1,
+                "insertId": 23,
+                "serverStatus": 2,
+                "warningCount": 0,
+                "message": "",
+                "protocol41": true,
+                "changedRows": 0
+            },
+            "user_to_public_insert": {
+                "fieldCount": 0,
+                "affectedRows": 1,
+                "insertId": 30,
+                "serverStatus": 2,
+                "warningCount": 0,
+                "message": "",
+                "protocol41": true,
+                "changedRows": 0
+            }
+        }
+
+
+    PUT: api/events/public/edit
+
+        body: {
+            "ownerId": 1,
+            "eventId": 23,
+            "changes": {
+                "locationName": "Baruch College Library",
+                "lat": 40.7404,
+                "lng": -73.9832
+            }
+        }
+
+        response: {
+            "publicEvents": [
+                {
+                    "id": 23,
+                    "ownerId": 1,
+                    "eventName": "Test Event PUBLIC April 19 2020",
+                    "startDate": "2020-06-15T04:00:00.000Z",
+                    "endDate": "2020-09-15T04:00:00.000Z",
+                    "repeatWeekly": 1,
+                    "weeklySchedule": "0111110",
+                    "time": "10:30:00",
+                    "locationName": "Baruch College Library",
+                    "lat": 40.7404,
+                    "lng": -73.9832,
+                    "code": "1bcf4411-ed3e-4eeb-bef0-0cf3b4596a9e",
+                    "attendees": 1
+                }
+            ]
+        }
+
+
+    PUT: api/events/public/delete
+
+        body: {
+            "eventId": 23,
+            "code": "1bcf4411-ed3e-4eeb-bef0-0cf3b4596a9e"
+        }
+
+        response: {
+            "eventId": 23,
+            "code": "1bcf4411-ed3e-4eeb-bef0-0cf3b4596a9e",
+            "event": {
+                "id": 23,
+                "ownerId": 1,
+                "eventName": "Test Event PUBLIC April 19 2020",
+                "startDate": "2020-06-15T04:00:00.000Z",
+                "endDate": "2020-09-15T04:00:00.000Z",
+                "repeatWeekly": 1,
+                "weeklySchedule": "0111110",
+                "time": "10:30:00",
+                "locationName": "Baruch College Library",
+                "lat": 40.7404,
+                "lng": -73.9832,
+                "code": "1bcf4411-ed3e-4eeb-bef0-0cf3b4596a9e",
+                "attendees": 1
+            },
+            "delete_event": {
+                "fieldCount": 0,
+                "affectedRows": 0,
+                "insertId": 0,
+                "serverStatus": 2,
+                "warningCount": 0,
+                "message": "",
+                "protocol41": true,
+                "changedRows": 0
+            }
+        }
+
+
+    POST: api/events/join
+
+        body: {
+            "userId": 1,
+            "code": "f68909a8-17cf-4de1-94cf-151aaec927e5"
+        }
+
+        response: {
+            "userId": 1,
+            "code": "f68909a8-17cf-4de1-94cf-151aaec927e5",
+            "event": {
+                "id": 27,
+                "ownerId": 3,
+                "eventName": "Test Event 4 April 20 2020",
+                "startDate": "2020-06-15T04:00:00.000Z",
+                "endDate": "2020-09-15T04:00:00.000Z",
+                "repeatWeekly": 1,
+                "weeklySchedule": "0111110",
+                "time": "10:30:00",
+                "locationName": "Flushing Library",
+                "lat": 40.7578,
+                "lng": -73.8289,
+                "code": "f68909a8-17cf-4de1-94cf-151aaec927e5",
+                "attendees": 1
+            },
+            "user_to_public_insert": {
+                "fieldCount": 0,
+                "affectedRows": 1,
+                "insertId": 4,
+                "serverStatus": 2,
+                "warningCount": 0,
+                "message": "",
+                "protocol41": true,
+                "changedRows": 0
+            },
+            "update_event_attendees": {
+                "fieldCount": 0,
+                "affectedRows": 1,
+                "insertId": 0,
+                "serverStatus": 2,
+                "warningCount": 0,
+                "message": "(Rows matched: 1  Changed: 1  Warnings: 0",
+                "protocol41": true,
+                "changedRows": 1
+            }
+        }
+
+
+
+NOTIFICATIONS:
+
+    GET: api/notifications/read
+
+        body: {
+            "userId": 1
+        }
+
+        response: {
+            "userId": 1,
+            "user_notifications": [
+                {
+                    "id": 67,
+                    "userId": 1,
+                    "eventId": 27,
+                    "createdOn": "11:13:06",
+                    "message": "locationName: Flushing Library -> Baruch College Library\nlat: 40.7578 -> 40.7404\nlng: -73.8289 -> -73.9832"
+                }
+            ]
+        }
+
+
+    DELETE: api/notifications/delete
+
+        body: {
+            "userId": 1,
+            "notificationId": 67
+        }
+
+        response: {
+            "userId": 1,
+            "notificationId": 67,
+            "confirm_notification": [
+                {
+                    "id": 67,
+                    "userId": 1,
+                    "eventId": 27,
+                    "createdOn": "11:13:06",
+                    "message": "locationName: Flushing Library -> Baruch College Library\nlat: 40.7578 -> 40.7404\nlng: -73.8289 -> -73.9832"
+                }
+            ],
+            "delete_notification": {
+                "fieldCount": 0,
+                "affectedRows": 1,
+                "insertId": 0,
+                "serverStatus": 2,
+                "warningCount": 0,
+                "message": "",
+                "protocol41": true,
+                "changedRows": 0
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

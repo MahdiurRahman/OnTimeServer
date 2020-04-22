@@ -70,7 +70,7 @@ const runQuery = queryString => {
 //     userId int not null,
 //         foreign key (userId) references users(id),
 //     eventId int not null,
-//         foreign key (eventId) references events_private(id))`)
+//         foreign key (eventId) references events_public(id))`)
 
 // runQuery(`CREATE TABLE notifications (
 //     id int not null auto_increment primary key,
@@ -96,10 +96,13 @@ const runQuery = queryString => {
 
 // SELECT
 // runQuery("SELECT * FROM users");
+// runQuery("SELECT * FROM users WHERE id=1");
 // runQuery("SELECT * FROM users_info");
+// runQuery("SELECT * FROM users_info WHERE id=3");
 // runQuery(`SELECT * FROM events_private`);
 // runQuery(`SELECT * FROM users_to_private`);
 // runQuery(`SELECT * FROM events_public`);
+// runQuery(`SELECT * FROM events_public WHERE ownerId!=1`);
 // runQuery(`SELECT * FROM users_to_public`);
 // runQuery(`SELECT userId FROM users_to_public WHERE eventId=1`)
 // runQuery(`SELECT * FROM notifications`);
@@ -111,7 +114,7 @@ const runQuery = queryString => {
 // runQuery("DROP TABLE users");
 // runQuery("DROP TABLE public_events");
 // runQuery("DROP TABLE private_events");
-// runQuery("DROP TABLE users_to_private");
+// runQuery("DROP TABLE users_to_public");
 // runQuery("DROP TABLE users_info");
 // runQuery("DELETE FROM users_info WHERE firstName='john'");
 // runQuery("DELETE FROM users WHERE (email='john@email.com') and (id > 1)");

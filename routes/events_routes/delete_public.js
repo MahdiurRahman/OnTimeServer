@@ -2,25 +2,36 @@ const { query } = require("../../database/connection");
 const delete_public = require("express").Router();
 
 delete_public.put("/", async (req, res) => {
+    console.log("api/events/public/delete")
+
     const body = req.body
 
     // 1. find event
     let event
     try {
-        event = await query(`SELECT * FROM events_private WHERE id=${body.id}`)
+        event = await query(`SELECT * FROM events_public WHERE id=${body.eventId}`)
     } catch (error) {
         res.send(error)
     }
+    event = event[0]
 
     // 2. check code
     if (body.code != event.code) {
         res.send(`Sorry. Wrong credentials to delete event`)
     }
 
+    // 6. delete all entrys in users_to_public
+    let delete_users_to_public
+    try {
+        delete_users_to_private = await query(`DELETE FROM users_to_public WHERE eventId=${body.eventId}`)
+    } catch(error) {
+        res.send(error)
+    }
+
     // 3. delete event
     let delete_event
     try {
-        delete_event = await query(`DELETE FROM events_private WHERE id=${body.id}`)
+        delete_event = await query(`DELETE FROM events_private WHERE id=${body.eventId}`)
     } catch (error) {
         res.send(error)
     }
@@ -30,7 +41,7 @@ delete_public.put("/", async (req, res) => {
     try {
         users = await query(`SELECT * FROM users_to_public 
         WHERE 
-                eventId=${body.id}
+                eventId=${body.eventId}
             AND
                 userId!=${event.ownerId}`)
     } catch (error) {
@@ -60,20 +71,12 @@ delete_public.put("/", async (req, res) => {
         }
     }
 
-    // 6. delete all entrys in users_to_public
-    let delete_users_to_public
-    try {
-        delete_users_to_private = await query(`DELETE FROM users_to_public WHERE eventId=${body.id}`)
-    } catch(error) {
-        res.send(error)
-    }
-
     res.send({
         ...body,
         event, 
         delete_event,
-        notification,
         delete_users_to_public,
+        notification
     })
 })
 

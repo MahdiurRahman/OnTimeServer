@@ -2,6 +2,7 @@ const { query } = require("../../database/connection");
 const edit_user = require("express").Router();
 
 edit_user.put("/", async (req, res) => {
+    console.log("api/users/edit")
     const body = req.body
     
     // 1. create sql query
@@ -17,7 +18,7 @@ edit_user.put("/", async (req, res) => {
     // 2. run sql query
     let conduct_edit;
     try {
-        conduct_edit = await query(`UPDATE users_info SET ${sql_query} WHERE id=${body.id}`);
+        conduct_edit = await query(`UPDATE users_info SET ${sql_query} WHERE id=${body.userInfoId}`);
     } catch (error) {
         res.send(error);
     }

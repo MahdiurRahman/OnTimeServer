@@ -5,7 +5,7 @@ const testRoute = require("../routes/testRoute");
 const events = require("../routes/events");
 const notifications = require("./notifications_routes/notifications");
 const favorites = require("./favorites");
-const user = require("./user");
+const users = require("./user");
 const search = require("./search");
 const account = require("./account.js")
 
@@ -20,7 +20,7 @@ apiRouter.use("/test", testRoute);
 apiRouter.use("/events", events);
 apiRouter.use("/notifications", notifications);
 apiRouter.use("/favorites", favorites);
-apiRouter.use("/user", user);
+apiRouter.use("/users", users);
 apiRouter.use("/search", search);
 apiRouter.use("/account", account);
 

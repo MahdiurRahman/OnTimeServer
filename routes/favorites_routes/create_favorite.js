@@ -4,6 +4,8 @@ const create_favorite = require("express").Router();
 create_favorite.post("/", async (req, res) => {
     const body = req.body
     
+    // !NOTE: A good check to add would be to check for duplicate favorites by lat and lng.
+
     let favorite
     try {
         favorite = await query(`INSERT INTO favorites (
@@ -12,7 +14,7 @@ create_favorite.post("/", async (req, res) => {
             lat,
             lng)
         VALUES (
-            ${body.id},
+            ${body.userId},
             '${body.name}',
             ${body.lat},
             ${body.lng}
