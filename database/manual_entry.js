@@ -124,11 +124,16 @@ const runQuery = queryString => {
 // runQuery(`DELETE FROM users_to_public WHERE id=2`)
 // runQuery(`DELETE FROM users_to_public WHERE userId=9`)
 
+// ALTER TABLES:
+// runQuery(`ALTER TABLE users_to_private DROP locationName`)
+// runQuery(`ALTER TABLE users_to_private DROP lat`)
+// runQuery(`ALTER TABLE users_to_private DROP lng`)
+
 // OTHERS
 // runQuery("DESCRIBE users");
 // runQuery("DESCRIBE users_info");
 // runQuery("DESCRIBE public_events");
-// runQuery("DESCRIBE private_events");
+// runQuery("DESCRIBE events_private");
 // runQuery("DESCRIBE users_to_public");
 // runQuery("DESCRIBE users_to_private");
 // runQuery(`SELECT * FROM (SELECT * FROM users INNER JOIN users_info ON users.user_info=users_info.id) WHERE email='mahdi@email.com'`)

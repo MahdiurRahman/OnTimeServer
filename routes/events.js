@@ -2,6 +2,8 @@ const { query } = require("../database/connection")
 const events = require("express").Router()
 const create_private = require("./events_routes/create_private")
 const create_public = require("./events_routes/create_public")
+const read_all_private = require("./events_routes/read_all_private")
+const read_search_private = require("./events_routes/read_search_private")
 const edit_private = require("./events_routes/edit_private")
 const edit_public = require("./events_routes/edit_public")
 const delete_private = require("./events_routes/delete_private")
@@ -10,6 +12,10 @@ const uuid = require("uuid")
 
 // PRIVATE:
 events.use("/private/create", create_private)
+
+events.use("/private/read/all", read_all_private)
+
+events.use("/private/search", read_search_private)
 
 events.use("/private/edit", edit_private)
 
