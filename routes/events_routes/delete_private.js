@@ -2,7 +2,7 @@ const { query } = require("../../database/connection");
 const delete_private = require("express").Router();
 
 delete_private.put("/", async (req, res) => {
-    console.log("api/events/private/delete")
+    console.log("/api/events/private/delete")
     const body = req.body
     
     // 1. find event

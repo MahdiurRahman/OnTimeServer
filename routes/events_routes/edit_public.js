@@ -2,7 +2,7 @@ const { query } = require("../../database/connection");
 const edit_public = require("express").Router();
 
 edit_public.put("/", async (req, res) => {
-    console.log("api/events/public/edit")
+    console.log("/api/events/public/edit")
 
     // 1. confirm if this request was sent from event owner
     let event;
