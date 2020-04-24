@@ -3,6 +3,7 @@ const create_private = require("express").Router()
 const uuid = require("uuid")
 
 create_private.post("/", async (req, res) => {
+  console.log("/api/events/private/create")
     // Date format: YYYY-MM-DD
     // Time format: HH:MM:SS
     

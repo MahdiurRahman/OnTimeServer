@@ -2,7 +2,7 @@ const { query } = require("../../database/connection")
 const edit_private = require("express").Router()
 
 edit_private.put("/", async (req, res) => {
-  console.log("api/events/private/edit")
+  console.log("/api/events/private/edit")
   // confirm if its the event owner
   let event
   try {

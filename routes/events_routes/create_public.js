@@ -6,7 +6,7 @@ create_public.post("/", async (req, res) => {
     // Date format: YYYY-MM-DD
     // Time format: HH:MM:SS
   
-    console.log("api/events/public")
+    console.log("/api/events/public")
   
     // Create entry in events table
     const code = await uuid.v4()

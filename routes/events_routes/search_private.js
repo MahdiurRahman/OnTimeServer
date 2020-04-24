@@ -1,8 +1,8 @@
 const { query } = require("../../database/connection")
-const read_search_private = require("express").Router()
+const search_private = require("express").Router()
 
-read_search_private.get("/", async (req, res) => {
-    console.log("api/events/private/read/search")
+search_private.get("/", async (req, res) => {
+    console.log("/api/events/private/search")
     const body = req.body
 
     // 1. Form query from terms
@@ -36,4 +36,4 @@ read_search_private.get("/", async (req, res) => {
     }).status(200)
 })
 
-module.exports = read_search_private
+module.exports = search_private
