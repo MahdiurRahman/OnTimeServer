@@ -2,7 +2,7 @@ const { query } = require("../../database/connection");
 const delete_favorite = require("express").Router();
 
 delete_favorite.delete("/", async (req, res) => {
-    console.log("api/favorites/delete")
+    console.log("/api/favorites/delete")
     const body = req.body
 
     let delete_request

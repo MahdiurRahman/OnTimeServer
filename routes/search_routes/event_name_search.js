@@ -2,7 +2,7 @@ const { query } = require("../../database/connection")
 const event_name_search = require("express").Router()
 
 event_name_search.get("/", async (req, res) => {
-    console.log("api/search/name")
+    console.log("/api/search/name")
     const body = req.body
 
     // 1. find event with same name as search term

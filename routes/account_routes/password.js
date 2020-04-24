@@ -3,7 +3,9 @@ const password = require("express").Router();
 const bcrypt = require("bcrypt")
 
 password.put("/", async (req, res) => {
-    // find user
+    console.log("/api/account/edit/password")
+    
+    // 1. find user
     const body = req.body
     let user
     try {
@@ -13,14 +15,14 @@ password.put("/", async (req, res) => {
     }
     user = user[0]
 
-    // confirm password
+    // 2. confirm password
     const result = await bcrypt.compare(body.password, user.password)
     if (!result) {
         res.send(`Wrong password buddy`)
         return
     }
 
-    // change password
+    // 3. change password
     let new_password
     let change_password_action
     try {

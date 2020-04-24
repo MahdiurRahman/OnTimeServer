@@ -2,6 +2,7 @@ const { query } = require("../../database/connection");
 const create_favorite = require("express").Router();
 
 create_favorite.post("/", async (req, res) => {
+    console.log("/api/favorites/create")
     const body = req.body
     
     // !NOTE: A good check to add would be to check for duplicate favorites by lat and lng.

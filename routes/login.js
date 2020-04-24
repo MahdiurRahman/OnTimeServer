@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt")
 
 // This route, the way it is, will have to make several requests to the db. We could try creating a huge query like the one from Raman's class where it gets all the user info and user event info etc. in one request.
 login.post("/", async (req, res) => {
-  console.log("api/login")
+  console.log("/api/login")
   const body = req.body
 
   // 1. Check if user exists
@@ -98,9 +98,6 @@ login.post("/", async (req, res) => {
           query: public_events_query
         }).status(404)
       }
-    }
-    else {
-      console.log(public_event_ids, public_events_query, "User has no public events")
     }
 
   // 6. Retrieve notifications

@@ -2,7 +2,7 @@ const { query } = require("../../database/connection");
 const read_user = require("express").Router();
 
 read_user.get("/", async (req, res) => {
-    console.log("api/users/read")
+    console.log("/api/users/read")
     const body = req.body
 
     let user_info
