@@ -2,7 +2,7 @@ const { query } = require("../../database/connection");
 const edit_favorite = require("express").Router();
 
 edit_favorite.put("/", async (req, res) => {
-    console.log("api/favorites/edit")
+    console.log("/api/favorites/edit")
     const body = req.body
 
     // 1. generate sql query

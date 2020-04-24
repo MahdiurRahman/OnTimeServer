@@ -2,7 +2,7 @@ const { query } = require("../../database/connection");
 const edit_user = require("express").Router();
 
 edit_user.put("/", async (req, res) => {
-    console.log("api/users/edit")
+    console.log("/api/users/edit")
     const body = req.body
     
     // 1. create sql query

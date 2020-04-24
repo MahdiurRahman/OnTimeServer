@@ -2,6 +2,7 @@ const { query } = require("../../database/connection");
 const notifications = require("express").Router();
 
 notifications.get("/read", async (req, res) => {
+    console.log("/api/notifications/read")
     const body = req.body
     let user_notifications
     try {
@@ -16,6 +17,7 @@ notifications.get("/read", async (req, res) => {
 })
 
 notifications.delete("/delete", async (req, res) => {
+    console.log("/api/notifications/delete")
     const body = req.body
 
     // 1. Retreive notification from db

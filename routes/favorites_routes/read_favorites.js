@@ -2,7 +2,7 @@ const { query } = require("../../database/connection");
 const read_favorites = require("express").Router();
 
 read_favorites.get("/", async (req, res) => {
-    console.log("api/favorites/read")
+    console.log("/api/favorites/read")
     const body = req.body
 
     let favorites

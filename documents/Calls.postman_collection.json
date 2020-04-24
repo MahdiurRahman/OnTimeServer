@@ -34,6 +34,98 @@
 			"response": []
 		},
 		{
+			"name": "Change Password",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"john@email.com\",\n\t\"password\": \"password123\",\n\t\"new_password\": \"password\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/account/edit/password",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"account",
+						"edit",
+						"password"
+					]
+				},
+				"description": "!NOTE: If you use this route to change a password, please remember to change it back to the original. Especially for the user john@email.com"
+			},
+			"response": [
+				{
+					"name": "Change Password",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"john@email.com\",\n\t\"password\": \"password123\",\n\t\"new_password\": \"password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/account/edit/password",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"account",
+								"edit",
+								"password"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "402"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"192-X2pu1SVtYCCYX+KG7L37a++2OyY\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 24 Apr 2020 12:48:36 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"user\": {\n        \"id\": 1,\n        \"email\": \"john@email.com\",\n        \"password\": \"$2b$10$E9T7ffovouIiZuspxVluxObPMKpu/k7cvBEAfJnTCDFhP4jT6uVEC\",\n        \"user_info\": 3\n    },\n    \"new_password\": \"$2b$10$hKScZNqz1QZZSzjR9rPb1up18FF78REBziriomn.KOzLEF1DDFAge\",\n    \"change_password_action\": {\n        \"fieldCount\": 0,\n        \"affectedRows\": 1,\n        \"insertId\": 0,\n        \"serverStatus\": 2,\n        \"warningCount\": 0,\n        \"message\": \"(Rows matched: 1  Changed: 1  Warnings: 0\",\n        \"protocol41\": true,\n        \"changedRows\": 1\n    }\n}"
+				}
+			]
+		},
+		{
 			"name": "Create Private Event",
 			"request": {
 				"method": "PUT",
@@ -505,6 +597,286 @@
 			]
 		},
 		{
+			"name": "Read Public Events",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"userId\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/events/public/read",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"events",
+						"public",
+						"read"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Read Public Events",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"userId\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/events/public/read",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"events",
+								"public",
+								"read"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1092"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"444-16bCd51eLYXt8YbpAXKDGbxiqAA\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 24 Apr 2020 12:40:36 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"userId\": 1,\n    \"user_to_public\": [\n        \"\",\n        {\n            \"id\": 3,\n            \"userId\": 1,\n            \"eventId\": 22\n        },\n        {\n            \"id\": 4,\n            \"userId\": 1,\n            \"eventId\": 27\n        },\n        {\n            \"id\": 1,\n            \"userId\": 1,\n            \"eventId\": 24\n        }\n    ],\n    \"public_events\": [\n        {\n            \"id\": 22,\n            \"ownerId\": 17,\n            \"eventName\": \"Birthday party\",\n            \"startDate\": \"2020-05-21T04:00:00.000Z\",\n            \"endDate\": \"2020-05-21T04:00:00.000Z\",\n            \"repeatWeekly\": 0,\n            \"weeklySchedule\": \"1000000\",\n            \"time\": \"10:55:00\",\n            \"locationName\": \"My house\",\n            \"lat\": 1,\n            \"lng\": 1,\n            \"code\": \"fa3c82e5-3294-4623-9cac-67ab2e6531f4\",\n            \"attendees\": 6\n        },\n        {\n            \"id\": 24,\n            \"ownerId\": 1,\n            \"eventName\": \"Test Event 3 April 20 2020\",\n            \"startDate\": \"2020-06-15T04:00:00.000Z\",\n            \"endDate\": \"2020-09-15T04:00:00.000Z\",\n            \"repeatWeekly\": 1,\n            \"weeklySchedule\": \"0111110\",\n            \"time\": \"10:30:00\",\n            \"locationName\": \"Flushing Library\",\n            \"lat\": 40.7578,\n            \"lng\": -73.8289,\n            \"code\": \"9b61d121-0d8c-4d29-ac73-3e5e49fe50b6\",\n            \"attendees\": 1\n        },\n        {\n            \"id\": 27,\n            \"ownerId\": 3,\n            \"eventName\": \"Test Event 4 April 20 2020\",\n            \"startDate\": \"2020-06-15T04:00:00.000Z\",\n            \"endDate\": \"2020-09-15T04:00:00.000Z\",\n            \"repeatWeekly\": 1,\n            \"weeklySchedule\": \"0111110\",\n            \"time\": \"10:30:00\",\n            \"locationName\": \"Library near downtown\",\n            \"lat\": 40.74,\n            \"lng\": -73.98,\n            \"code\": \"f68909a8-17cf-4de1-94cf-151aaec927e5\",\n            \"attendees\": 2\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Search Public Events",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"eventName\": \"Birthday party2\",\n\t\"startDate\": \"2020-05-21\",\n    \"endDate\": \"2020-05-21\",\n    \"repeatWeekly\": 0,\n    \"weeklySchedule\": \"1000000\",\n    \"time\": \"10:55:00\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/events/public/search",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"events",
+						"public",
+						"search"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Search Public Events",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"eventName\": \"Birthday party2\",\n\t\"startDate\": \"2020-05-21\",\n    \"endDate\": \"2020-05-21\",\n    \"repeatWeekly\": 0,\n    \"weeklySchedule\": \"1000000\",\n    \"time\": \"10:55:00\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/events/public/search",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"events",
+								"public",
+								"search"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1034"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"40a-5MeaL8pQWpAw+eC4ARYsBnLRvAw\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 24 Apr 2020 12:06:31 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"eventName\": \"Birthday party2\",\n    \"startDate\": \"2020-05-21\",\n    \"endDate\": \"2020-05-21\",\n    \"repeatWeekly\": 0,\n    \"weeklySchedule\": \"1000000\",\n    \"time\": \"10:55:00\",\n    \"event_public\": [\n        {\n            \"id\": 18,\n            \"ownerId\": 1,\n            \"eventName\": \"Birthday party2\",\n            \"startDate\": \"2020-05-21T04:00:00.000Z\",\n            \"endDate\": \"2020-05-21T04:00:00.000Z\",\n            \"repeatWeekly\": 0,\n            \"weeklySchedule\": \"1000000\",\n            \"time\": \"10:55:00\",\n            \"locationName\": \"My house\",\n            \"lat\": 1,\n            \"lng\": 1,\n            \"code\": \"973dcc79-bcf0-47d6-8601-74a3c84bd71b\",\n            \"attendees\": 1\n        },\n        {\n            \"id\": 19,\n            \"ownerId\": 1,\n            \"eventName\": \"Birthday party2\",\n            \"startDate\": \"2020-05-21T04:00:00.000Z\",\n            \"endDate\": \"2020-05-21T04:00:00.000Z\",\n            \"repeatWeekly\": 0,\n            \"weeklySchedule\": \"1000000\",\n            \"time\": \"10:55:00\",\n            \"locationName\": \"My house\",\n            \"lat\": 1,\n            \"lng\": 1,\n            \"code\": \"38132d4a-20c5-4963-81c4-1d30ff63526e\",\n            \"attendees\": 1\n        },\n        {\n            \"id\": 20,\n            \"ownerId\": 1,\n            \"eventName\": \"Birthday party2\",\n            \"startDate\": \"2020-05-21T04:00:00.000Z\",\n            \"endDate\": \"2020-05-21T04:00:00.000Z\",\n            \"repeatWeekly\": 0,\n            \"weeklySchedule\": \"1000000\",\n            \"time\": \"10:55:00\",\n            \"locationName\": \"My house\",\n            \"lat\": 1,\n            \"lng\": 1,\n            \"code\": \"c2164f57-b674-4323-9d2c-3c1d803d373d\",\n            \"attendees\": 1\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Search Public Event by Name",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"eventName\": \"Birthday party\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/search/name",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"search",
+						"name"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Search Event by Name",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"eventName\": \"Birthday party\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/search/name",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"search",
+								"name"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "3530"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"dca-tO+KpSS4Xzaj8oNuktd6jsoFXYs\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 22 Apr 2020 01:15:12 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"eventName\": \"Birthday party\",\n    \"events\": [\n        {\n            \"id\": 2,\n            \"ownerId\": 1,\n            \"eventName\": \"Birthday party\",\n            \"startDate\": \"2020-05-21T04:00:00.000Z\",\n            \"endDate\": \"2020-05-21T04:00:00.000Z\",\n            \"repeatWeekly\": 0,\n            \"weeklySchedule\": \"1000000\",\n            \"time\": \"10:55:00\",\n            \"locationName\": \"My house\",\n            \"lat\": 1,\n            \"lng\": 1,\n            \"code\": \"a44ed2a2-6fc5-4f1e-bb1c-7cc367643735\",\n            \"attendees\": 1\n        },\n        {\n            \"id\": 7,\n            \"ownerId\": 1,\n            \"eventName\": \"Birthday party\",\n            \"startDate\": \"2020-05-21T04:00:00.000Z\",\n            \"endDate\": \"2020-05-21T04:00:00.000Z\",\n            \"repeatWeekly\": 0,\n            \"weeklySchedule\": \"1000000\",\n            \"time\": \"10:55:00\",\n            \"locationName\": \"My house\",\n            \"lat\": 1,\n            \"lng\": 1,\n            \"code\": \"2feef83b-79b6-45ff-9799-8659bc373dfb\",\n            \"attendees\": 1\n        },\n        {\n            \"id\": 8,\n            \"ownerId\": 1,\n            \"eventName\": \"Birthday party\",\n            \"startDate\": \"2020-05-21T04:00:00.000Z\",\n            \"endDate\": \"2020-05-21T04:00:00.000Z\",\n            \"repeatWeekly\": 0,\n            \"weeklySchedule\": \"1000000\",\n            \"time\": \"10:55:00\",\n            \"locationName\": \"My house\",\n            \"lat\": 1,\n            \"lng\": 1,\n            \"code\": \"51049d6d-df19-465a-af48-2c32933007d6\",\n            \"attendees\": 1\n        },\n        {\n            \"id\": 9,\n            \"ownerId\": 1,\n            \"eventName\": \"Birthday party\",\n            \"startDate\": \"2020-05-21T04:00:00.000Z\",\n            \"endDate\": \"2020-05-21T04:00:00.000Z\",\n            \"repeatWeekly\": 0,\n            \"weeklySchedule\": \"1000000\",\n            \"time\": \"10:55:00\",\n            \"locationName\": \"My house\",\n            \"lat\": 1,\n            \"lng\": 1,\n            \"code\": \"3f0c461d-4e90-46c3-ad3b-bf6aa119e711\",\n            \"attendees\": 1\n        },\n        {\n            \"id\": 10,\n            \"ownerId\": 1,\n            \"eventName\": \"Birthday party\",\n            \"startDate\": \"2020-05-21T04:00:00.000Z\",\n            \"endDate\": \"2020-05-21T04:00:00.000Z\",\n            \"repeatWeekly\": 0,\n            \"weeklySchedule\": \"1000000\",\n            \"time\": \"10:55:00\",\n            \"locationName\": \"My house\",\n            \"lat\": 1,\n            \"lng\": 1,\n            \"code\": \"cda90db7-c7b4-491e-9a06-6ff4a02f6dfc\",\n            \"attendees\": 1\n        },\n        {\n            \"id\": 12,\n            \"ownerId\": 1,\n            \"eventName\": \"Birthday party\",\n            \"startDate\": \"2020-05-21T04:00:00.000Z\",\n            \"endDate\": \"2020-05-21T04:00:00.000Z\",\n            \"repeatWeekly\": 0,\n            \"weeklySchedule\": \"1000000\",\n            \"time\": \"10:55:00\",\n            \"locationName\": \"My house\",\n            \"lat\": 1,\n            \"lng\": 1,\n            \"code\": \"13374789-560a-463e-8004-21898c7c6111\",\n            \"attendees\": 1\n        },\n        {\n            \"id\": 13,\n            \"ownerId\": 1,\n            \"eventName\": \"Birthday party\",\n            \"startDate\": \"2020-05-21T04:00:00.000Z\",\n            \"endDate\": \"2020-05-21T04:00:00.000Z\",\n            \"repeatWeekly\": 0,\n            \"weeklySchedule\": \"1000000\",\n            \"time\": \"10:55:00\",\n            \"locationName\": \"My house\",\n            \"lat\": 1,\n            \"lng\": 1,\n            \"code\": \"d599cac0-aa85-409e-ba65-3cb98a02e1e2\",\n            \"attendees\": 1\n        },\n        {\n            \"id\": 14,\n            \"ownerId\": 1,\n            \"eventName\": \"Birthday party\",\n            \"startDate\": \"2020-05-21T04:00:00.000Z\",\n            \"endDate\": \"2020-05-21T04:00:00.000Z\",\n            \"repeatWeekly\": 0,\n            \"weeklySchedule\": \"1000000\",\n            \"time\": \"10:55:00\",\n            \"locationName\": \"My house\",\n            \"lat\": 1,\n            \"lng\": 1,\n            \"code\": \"b8a1abb4-25c0-475c-a0d2-7fbd2830faae\",\n            \"attendees\": 1\n        },\n        {\n            \"id\": 15,\n            \"ownerId\": 1,\n            \"eventName\": \"Birthday party\",\n            \"startDate\": \"2020-05-21T04:00:00.000Z\",\n            \"endDate\": \"2020-05-21T04:00:00.000Z\",\n            \"repeatWeekly\": 0,\n            \"weeklySchedule\": \"1000000\",\n            \"time\": \"10:55:00\",\n            \"locationName\": \"My house\",\n            \"lat\": 1,\n            \"lng\": 1,\n            \"code\": \"3de211df-8c7c-41c6-a441-1d7f2767fd77\",\n            \"attendees\": 1\n        },\n        {\n            \"id\": 16,\n            \"ownerId\": 1,\n            \"eventName\": \"Birthday party\",\n            \"startDate\": \"2020-05-21T04:00:00.000Z\",\n            \"endDate\": \"2020-05-21T04:00:00.000Z\",\n            \"repeatWeekly\": 0,\n            \"weeklySchedule\": \"1000000\",\n            \"time\": \"10:55:00\",\n            \"locationName\": \"My house\",\n            \"lat\": 1,\n            \"lng\": 1,\n            \"code\": \"4c58fcf9-2c63-4943-b316-f240f6fb42c6\",\n            \"attendees\": 1\n        },\n        {\n            \"id\": 17,\n            \"ownerId\": 1,\n            \"eventName\": \"Birthday party\",\n            \"startDate\": \"2020-05-21T04:00:00.000Z\",\n            \"endDate\": \"2020-05-21T04:00:00.000Z\",\n            \"repeatWeekly\": 0,\n            \"weeklySchedule\": \"1000000\",\n            \"time\": \"10:55:00\",\n            \"locationName\": \"My house\",\n            \"lat\": 1,\n            \"lng\": 1,\n            \"code\": \"7683b0e4-a8df-4c53-b00a-cc7210660f44\",\n            \"attendees\": 1\n        },\n        {\n            \"id\": 22,\n            \"ownerId\": 17,\n            \"eventName\": \"Birthday party\",\n            \"startDate\": \"2020-05-21T04:00:00.000Z\",\n            \"endDate\": \"2020-05-21T04:00:00.000Z\",\n            \"repeatWeekly\": 0,\n            \"weeklySchedule\": \"1000000\",\n            \"time\": \"10:55:00\",\n            \"locationName\": \"My house\",\n            \"lat\": 1,\n            \"lng\": 1,\n            \"code\": \"fa3c82e5-3294-4623-9cac-67ab2e6531f4\",\n            \"attendees\": 6\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
 			"name": "Edit Public Event",
 			"request": {
 				"method": "PUT",
@@ -674,7 +1046,7 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8080/api/events/join",
+					"raw": "localhost:8080/api/events/public/join",
 					"host": [
 						"localhost"
 					],
@@ -682,6 +1054,7 @@
 					"path": [
 						"api",
 						"events",
+						"public",
 						"join"
 					]
 				}
@@ -1466,98 +1839,6 @@
 					],
 					"cookie": [],
 					"body": "{\n    \"userInfoId\": 3,\n    \"changes\": {\n        \"firstName\": \"John\",\n        \"lastName\": \"Adams\"\n    },\n    \"conduct_edit\": {\n        \"fieldCount\": 0,\n        \"affectedRows\": 1,\n        \"insertId\": 0,\n        \"serverStatus\": 2,\n        \"warningCount\": 0,\n        \"message\": \"(Rows matched: 1  Changed: 1  Warnings: 0\",\n        \"protocol41\": true,\n        \"changedRows\": 1\n    }\n}"
-				}
-			]
-		},
-		{
-			"name": "Search Event by Name",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"eventName\": \"Birthday party\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "localhost:8080/api/search/name",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"search",
-						"name"
-					]
-				}
-			},
-			"response": [
-				{
-					"name": "Search Event by Name",
-					"originalRequest": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"eventName\": \"Birthday party\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "localhost:8080/api/search/name",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"search",
-								"name"
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "X-Powered-By",
-							"value": "Express"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json; charset=utf-8"
-						},
-						{
-							"key": "Content-Length",
-							"value": "3530"
-						},
-						{
-							"key": "ETag",
-							"value": "W/\"dca-tO+KpSS4Xzaj8oNuktd6jsoFXYs\""
-						},
-						{
-							"key": "Date",
-							"value": "Wed, 22 Apr 2020 01:15:12 GMT"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"eventName\": \"Birthday party\",\n    \"events\": [\n        {\n            \"id\": 2,\n            \"ownerId\": 1,\n            \"eventName\": \"Birthday party\",\n            \"startDate\": \"2020-05-21T04:00:00.000Z\",\n            \"endDate\": \"2020-05-21T04:00:00.000Z\",\n            \"repeatWeekly\": 0,\n            \"weeklySchedule\": \"1000000\",\n            \"time\": \"10:55:00\",\n            \"locationName\": \"My house\",\n            \"lat\": 1,\n            \"lng\": 1,\n            \"code\": \"a44ed2a2-6fc5-4f1e-bb1c-7cc367643735\",\n            \"attendees\": 1\n        },\n        {\n            \"id\": 7,\n            \"ownerId\": 1,\n            \"eventName\": \"Birthday party\",\n            \"startDate\": \"2020-05-21T04:00:00.000Z\",\n            \"endDate\": \"2020-05-21T04:00:00.000Z\",\n            \"repeatWeekly\": 0,\n            \"weeklySchedule\": \"1000000\",\n            \"time\": \"10:55:00\",\n            \"locationName\": \"My house\",\n            \"lat\": 1,\n            \"lng\": 1,\n            \"code\": \"2feef83b-79b6-45ff-9799-8659bc373dfb\",\n            \"attendees\": 1\n        },\n        {\n            \"id\": 8,\n            \"ownerId\": 1,\n            \"eventName\": \"Birthday party\",\n            \"startDate\": \"2020-05-21T04:00:00.000Z\",\n            \"endDate\": \"2020-05-21T04:00:00.000Z\",\n            \"repeatWeekly\": 0,\n            \"weeklySchedule\": \"1000000\",\n            \"time\": \"10:55:00\",\n            \"locationName\": \"My house\",\n            \"lat\": 1,\n            \"lng\": 1,\n            \"code\": \"51049d6d-df19-465a-af48-2c32933007d6\",\n            \"attendees\": 1\n        },\n        {\n            \"id\": 9,\n            \"ownerId\": 1,\n            \"eventName\": \"Birthday party\",\n            \"startDate\": \"2020-05-21T04:00:00.000Z\",\n            \"endDate\": \"2020-05-21T04:00:00.000Z\",\n            \"repeatWeekly\": 0,\n            \"weeklySchedule\": \"1000000\",\n            \"time\": \"10:55:00\",\n            \"locationName\": \"My house\",\n            \"lat\": 1,\n            \"lng\": 1,\n            \"code\": \"3f0c461d-4e90-46c3-ad3b-bf6aa119e711\",\n            \"attendees\": 1\n        },\n        {\n            \"id\": 10,\n            \"ownerId\": 1,\n            \"eventName\": \"Birthday party\",\n            \"startDate\": \"2020-05-21T04:00:00.000Z\",\n            \"endDate\": \"2020-05-21T04:00:00.000Z\",\n            \"repeatWeekly\": 0,\n            \"weeklySchedule\": \"1000000\",\n            \"time\": \"10:55:00\",\n            \"locationName\": \"My house\",\n            \"lat\": 1,\n            \"lng\": 1,\n            \"code\": \"cda90db7-c7b4-491e-9a06-6ff4a02f6dfc\",\n            \"attendees\": 1\n        },\n        {\n            \"id\": 12,\n            \"ownerId\": 1,\n            \"eventName\": \"Birthday party\",\n            \"startDate\": \"2020-05-21T04:00:00.000Z\",\n            \"endDate\": \"2020-05-21T04:00:00.000Z\",\n            \"repeatWeekly\": 0,\n            \"weeklySchedule\": \"1000000\",\n            \"time\": \"10:55:00\",\n            \"locationName\": \"My house\",\n            \"lat\": 1,\n            \"lng\": 1,\n            \"code\": \"13374789-560a-463e-8004-21898c7c6111\",\n            \"attendees\": 1\n        },\n        {\n            \"id\": 13,\n            \"ownerId\": 1,\n            \"eventName\": \"Birthday party\",\n            \"startDate\": \"2020-05-21T04:00:00.000Z\",\n            \"endDate\": \"2020-05-21T04:00:00.000Z\",\n            \"repeatWeekly\": 0,\n            \"weeklySchedule\": \"1000000\",\n            \"time\": \"10:55:00\",\n            \"locationName\": \"My house\",\n            \"lat\": 1,\n            \"lng\": 1,\n            \"code\": \"d599cac0-aa85-409e-ba65-3cb98a02e1e2\",\n            \"attendees\": 1\n        },\n        {\n            \"id\": 14,\n            \"ownerId\": 1,\n            \"eventName\": \"Birthday party\",\n            \"startDate\": \"2020-05-21T04:00:00.000Z\",\n            \"endDate\": \"2020-05-21T04:00:00.000Z\",\n            \"repeatWeekly\": 0,\n            \"weeklySchedule\": \"1000000\",\n            \"time\": \"10:55:00\",\n            \"locationName\": \"My house\",\n            \"lat\": 1,\n            \"lng\": 1,\n            \"code\": \"b8a1abb4-25c0-475c-a0d2-7fbd2830faae\",\n            \"attendees\": 1\n        },\n        {\n            \"id\": 15,\n            \"ownerId\": 1,\n            \"eventName\": \"Birthday party\",\n            \"startDate\": \"2020-05-21T04:00:00.000Z\",\n            \"endDate\": \"2020-05-21T04:00:00.000Z\",\n            \"repeatWeekly\": 0,\n            \"weeklySchedule\": \"1000000\",\n            \"time\": \"10:55:00\",\n            \"locationName\": \"My house\",\n            \"lat\": 1,\n            \"lng\": 1,\n            \"code\": \"3de211df-8c7c-41c6-a441-1d7f2767fd77\",\n            \"attendees\": 1\n        },\n        {\n            \"id\": 16,\n            \"ownerId\": 1,\n            \"eventName\": \"Birthday party\",\n            \"startDate\": \"2020-05-21T04:00:00.000Z\",\n            \"endDate\": \"2020-05-21T04:00:00.000Z\",\n            \"repeatWeekly\": 0,\n            \"weeklySchedule\": \"1000000\",\n            \"time\": \"10:55:00\",\n            \"locationName\": \"My house\",\n            \"lat\": 1,\n            \"lng\": 1,\n            \"code\": \"4c58fcf9-2c63-4943-b316-f240f6fb42c6\",\n            \"attendees\": 1\n        },\n        {\n            \"id\": 17,\n            \"ownerId\": 1,\n            \"eventName\": \"Birthday party\",\n            \"startDate\": \"2020-05-21T04:00:00.000Z\",\n            \"endDate\": \"2020-05-21T04:00:00.000Z\",\n            \"repeatWeekly\": 0,\n            \"weeklySchedule\": \"1000000\",\n            \"time\": \"10:55:00\",\n            \"locationName\": \"My house\",\n            \"lat\": 1,\n            \"lng\": 1,\n            \"code\": \"7683b0e4-a8df-4c53-b00a-cc7210660f44\",\n            \"attendees\": 1\n        },\n        {\n            \"id\": 22,\n            \"ownerId\": 17,\n            \"eventName\": \"Birthday party\",\n            \"startDate\": \"2020-05-21T04:00:00.000Z\",\n            \"endDate\": \"2020-05-21T04:00:00.000Z\",\n            \"repeatWeekly\": 0,\n            \"weeklySchedule\": \"1000000\",\n            \"time\": \"10:55:00\",\n            \"locationName\": \"My house\",\n            \"lat\": 1,\n            \"lng\": 1,\n            \"code\": \"fa3c82e5-3294-4623-9cac-67ab2e6531f4\",\n            \"attendees\": 6\n        }\n    ]\n}"
 				}
 			]
 		}
