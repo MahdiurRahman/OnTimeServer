@@ -3,16 +3,16 @@ const create_public = require("express").Router()
 const uuid = require("uuid")
 
 create_public.post("/", async (req, res) => {
-    // Date format: YYYY-MM-DD
-    // Time format: HH:MM:SS
-  
-    console.log("/api/events/public")
-  
-    // Create entry in events table
-    const code = await uuid.v4()
-    let event_insert
-    try {
-        event_insert = await query(`INSERT INTO events_public (
+  // Date format: YYYY-MM-DD
+  // Time format: HH:MM:SS
+
+  console.log("/api/events/public")
+
+  // Create entry in events table
+  const code = await uuid.v4()
+  let event_insert
+  try {
+    event_insert = await query(`INSERT INTO events_public (
             ownerId,
             eventName,
             startDate,
@@ -40,14 +40,14 @@ create_public.post("/", async (req, res) => {
             '${code}',
             1
         )`)
-    } catch (error) {
-      res.send(error)
-    }
-    
-    // Create entry in users_to_public table
-    let user_to_public_insert
-    try {
-        user_to_public_insert = await query(`INSERT INTO users_to_public (
+  } catch (error) {
+    res.send(error)
+  }
+
+  // Create entry in users_to_public table
+  let user_to_public_insert
+  try {
+    user_to_public_insert = await query(`INSERT INTO users_to_public (
             userId,
             eventId
         )
@@ -55,11 +55,11 @@ create_public.post("/", async (req, res) => {
             ${req.body.ownerId},
             ${event_insert.insertId}
         )`)
-    } catch (error) {
-      res.send(error)
-    }
-  
-    res.send({ ...req.body, event_insert, user_to_public_insert }).status(200)
+  } catch (error) {
+    res.send(error)
+  }
+
+  res.send({ ...req.body, id: event_insert.insertId }).status(200)
 })
 
 module.exports = create_public
