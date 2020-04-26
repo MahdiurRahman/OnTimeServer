@@ -56,7 +56,7 @@ create_private.post("/", async (req, res) => {
       res.send(error)
     }
   
-    res.send({ ...req.body, events_insert, user_to_private_insert }).status(200)
+    res.send({ ...req.body, code: code, id: events_insert.insertId }).status(200)
 })
 
 module.exports = create_private
