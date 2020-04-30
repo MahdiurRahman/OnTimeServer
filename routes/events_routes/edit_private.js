@@ -43,15 +43,20 @@ edit_private.put("/", async (req, res) => {
   }
 
 
-  let privateEvents
-  try {
-    privateEvents = await query(`SELECT * FROM events_private WHERE ownerId=${req.body.ownerId} AND id=${req.body.eventId}`)
-  } catch (error) {
-    res.send({ error: error })
-  }
+    // get updated event
+    let edited_event
+    try {
+      edited_event = await query(`SELECT * FROM events_private
+          WHERE
+              ownerId=${req.body.ownerId}
+          AND
+              id=${req.body.eventId}`)
+    } catch (error) {
+      res.send({ error: error })
+    }
 
-  // send updated list of user's private events
-  res.send({privateEvents}).status(200)
+  // send updated event
+  res.send({ ...edited_event[0] }).status(200)
 })
 
 module.exports = edit_private
