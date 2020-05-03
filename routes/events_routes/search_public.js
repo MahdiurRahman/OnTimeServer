@@ -1,7 +1,7 @@
 const { query } = require("../../database/connection")
 const search_public = require("express").Router()
 
-search_public.get("/", async (req, res) => {
+search_public.put("/", async (req, res) => {
     console.log("/api/events/public/search")
 
     // 1. Form query from terms
