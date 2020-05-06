@@ -6,13 +6,100 @@
 	},
 	"item": [
 		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"johnny@email.com\",\n\t\"password\": \"password\",\n\t\"firtName\": \"Johnny\",\n\t\"lastName\": \"Adams\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/register",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"register"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Register",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"johnny@email.com\",\n\t\"password\": \"password\",\n\t\"firtName\": \"Johnny\",\n\t\"lastName\": \"Adams\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/register",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"register"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "360"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"168-3NduO1vAKn7a8dVQ1pUY/pWhv5E\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 24 Apr 2020 13:07:33 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"email\": \"johnny@email.com\",\n    \"firtName\": \"Johnny\",\n    \"lastName\": \"Adams\",\n    \"duplicates\": [],\n    \"user_info\": {\n        \"fieldCount\": 0,\n        \"affectedRows\": 1,\n        \"insertId\": 87,\n        \"serverStatus\": 2,\n        \"warningCount\": 0,\n        \"message\": \"\",\n        \"protocol41\": true,\n        \"changedRows\": 0\n    },\n    \"user\": {\n        \"fieldCount\": 0,\n        \"affectedRows\": 1,\n        \"insertId\": 64,\n        \"serverStatus\": 2,\n        \"warningCount\": 0,\n        \"message\": \"\",\n        \"protocol41\": true,\n        \"changedRows\": 0\n    }\n}"
+				}
+			]
+		},
+		{
 			"name": "Login",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"email\": \"john@email.com\",\n\t\"password\": \"password\"\n}",
+					"raw": "{\n\t\"email\": \"test@gmail.com\",\n\t\"password\": \"password\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -128,11 +215,11 @@
 		{
 			"name": "Create Private Event",
 			"request": {
-				"method": "PUT",
+				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"ownerId\": 1,\n\t\"eventName\": \"Test Event April 19 2020\",\n\t\"startDate\": \"2020-06-15\",\n\t\"endDate\": \"2020-09-15\",\n\t\"repeatWeekly\": true,\n\t\"weeklySchedule\": \"0111110\",\n\t\"time\": \"10:30:00\",\n\t\"locationName\": \"Flushing Library\",\n\t\"lat\": 40.7578,\n\t\"lng\": -73.8289\n}",
+					"raw": "{\n\t\"ownerId\": 17,\n\t\"eventName\": \"Test Event 1\",\n\t\"startDate\": \"2020-06-15\",\n\t\"endDate\": \"2020-09-15\",\n\t\"repeatWeekly\": true,\n\t\"weeklySchedule\": \"0111110\",\n\t\"time\": \"10:30:00\",\n\t\"locationName\": \"Flushing Library\",\n\t\"lat\": 40.7578,\n\t\"lng\": -73.8289,\n\t\"startLat\": 40.1,\n\t\"startLng\": -73.1\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -140,7 +227,7 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8080/api/events/private/edit",
+					"raw": "localhost:8080/api/events/private/create",
 					"host": [
 						"localhost"
 					],
@@ -149,7 +236,7 @@
 						"api",
 						"events",
 						"private",
-						"edit"
+						"create"
 					]
 				}
 			},
@@ -157,11 +244,11 @@
 				{
 					"name": "Create Private Event",
 					"originalRequest": {
-						"method": "PUT",
+						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"ownerId\": 1,\n    \"eventName\": \"Test Event April 19 2020\",\n    \"startDate\": \"2020-06-15\",\n    \"endDate\": \"2020-09-15\",\n    \"repeatWeekly\": true,\n    \"weeklySchedule\": \"0111110\",\n    \"time\": \"10:30:00\",\n    \"locationName\": \"Flushing Library\",\n    \"lat\": 40.7578,\n    \"lng\": -73.8289\n}",
+							"raw": "{\n\t\"ownerId\": 17,\n\t\"eventName\": \"Test Event 1\",\n\t\"startDate\": \"2020-06-15\",\n\t\"endDate\": \"2020-09-15\",\n\t\"repeatWeekly\": true,\n\t\"weeklySchedule\": \"0111110\",\n\t\"time\": \"10:30:00\",\n\t\"locationName\": \"Flushing Library\",\n\t\"lat\": 40.7578,\n\t\"lng\": -73.8289,\n\t\"startLat\": 40.1,\n\t\"startLng\": -73.1\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -169,7 +256,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/api/events/private/edit",
+							"raw": "localhost:8080/api/events/private/create",
 							"host": [
 								"localhost"
 							],
@@ -178,14 +265,41 @@
 								"api",
 								"events",
 								"private",
-								"edit"
+								"create"
 							]
 						}
 					},
+					"status": "OK",
+					"code": 200,
 					"_postman_previewlanguage": "json",
-					"header": null,
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "303"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"12f-ekLe5OXNyt6DviZCFGXXGRzEza8\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 06 May 2020 20:09:44 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
 					"cookie": [],
-					"body": "{\n    \"ownerId\": 1,\n    \"eventName\": \"Test Event April 19 2020\",\n    \"startDate\": \"2020-06-15\",\n    \"endDate\": \"2020-09-15\",\n    \"repeatWeekly\": true,\n    \"weeklySchedule\": \"0111110\",\n    \"time\": \"10:30:00\",\n    \"locationName\": \"Flushing Library\",\n    \"lat\": 40.7578,\n    \"lng\": -73.8289,\n    \"events_insert\": {\n        \"fieldCount\": 0,\n        \"affectedRows\": 1,\n        \"insertId\": 61,\n        \"serverStatus\": 2,\n        \"warningCount\": 0,\n        \"message\": \"\",\n        \"protocol41\": true,\n        \"changedRows\": 0\n    },\n    \"user_to_private_insert\": {\n        \"fieldCount\": 0,\n        \"affectedRows\": 1,\n        \"insertId\": 25,\n        \"serverStatus\": 2,\n        \"warningCount\": 0,\n        \"message\": \"\",\n        \"protocol41\": true,\n        \"changedRows\": 0\n    }\n}"
+					"body": "{\n    \"ownerId\": 17,\n    \"eventName\": \"Test Event 1\",\n    \"startDate\": \"2020-06-15\",\n    \"endDate\": \"2020-09-15\",\n    \"repeatWeekly\": true,\n    \"weeklySchedule\": \"0111110\",\n    \"time\": \"10:30:00\",\n    \"locationName\": \"Flushing Library\",\n    \"lat\": 40.7578,\n    \"lng\": -73.8289,\n    \"startLat\": 40.1,\n    \"startLng\": -73.1,\n    \"code\": \"7caeccbe-5f90-464a-9d1a-42c008e0703c\",\n    \"id\": 1\n}"
 				}
 			]
 		},
@@ -199,7 +313,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"ownerId\": 1,\n\t\"terms\": {\n\t\t\"eventName\": \"Birthday party\",\n        \"startDate\": \"2020-05-21\",\n        \"endDate\": \"2020-05-21\",\n        \"repeatWeekly\": 0,\n        \"weeklySchedule\": \"1000000\",\n        \"time\": \"10:55:00\"\n\t}\n}",
+					"raw": "{\n\t\"ownerId\": 17,\n\t\"terms\": {\n\t    \"eventName\": \"Test Event 1\",\n\t    \"startDate\": \"2020-06-15\",\n\t    \"endDate\": \"2020-09-15\",\n\t    \"weeklySchedule\": \"0111110\",\n\t    \"time\": \"10:30:00\",\n\t    \"lat\": 40.7578,\n\t    \"startLat\": 40.1\n\t}\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -440,7 +554,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"ownerId\": 1,\n\t\"eventId\": 61,\n\t\"changes\": {\n\t\t\"locationName\": \"Baruch College Library\",\n\t\t\"lat\": 40.7404,\n\t\t\"lng\": -73.9832\n\t}\n}",
+							"raw": "{\n\t\"ownerId\": 17,\n\t\"eventId\": 1,\n\t\"changes\": {\n\t\t\"locationName\": \"Baruch College Library\",\n\t\t\"lat\": 40.7404,\n\t\t\"lng\": -73.9832,\n\t\t\"startLat\": 40.7678,\n\t\t\"startLng\": -73.9645\n\t}\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -461,10 +575,37 @@
 							]
 						}
 					},
+					"status": "OK",
+					"code": 200,
 					"_postman_previewlanguage": "json",
-					"header": null,
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "340"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"154-6kGEp/pZmDpWfh8yOBpW1ggdIs0\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 06 May 2020 20:15:38 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
 					"cookie": [],
-					"body": "{\n    \"privateEvents\": [\n        {\n            \"id\": 61,\n            \"ownerId\": 1,\n            \"eventName\": \"Test Event April 19 2020\",\n            \"startDate\": \"2020-06-15T04:00:00.000Z\",\n            \"endDate\": \"2020-09-15T04:00:00.000Z\",\n            \"repeatWeekly\": 1,\n            \"weeklySchedule\": \"0111110\",\n            \"time\": \"10:30:00\",\n            \"locationName\": \"Baruch College Library\",\n            \"lat\": 40.7404,\n            \"lng\": -73.9832,\n            \"code\": \"97db69c1-979d-4e94-a65e-9e4927149d5c\"\n        }\n    ]\n}"
+					"body": "{\n    \"id\": 1,\n    \"ownerId\": 17,\n    \"eventName\": \"Test Event 1\",\n    \"startDate\": \"2020-06-15T04:00:00.000Z\",\n    \"endDate\": \"2020-09-15T04:00:00.000Z\",\n    \"repeatWeekly\": 1,\n    \"weeklySchedule\": \"0111110\",\n    \"time\": \"10:30:00\",\n    \"locationName\": \"Baruch College Library\",\n    \"lat\": 40.7404,\n    \"lng\": -73.9832,\n    \"code\": \"7caeccbe-5f90-464a-9d1a-42c008e0703c\",\n    \"startLat\": 40.7678,\n    \"startLng\": -73.9645\n}"
 				}
 			]
 		},
@@ -475,7 +616,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"eventId\": 61,\n\t\"code\": \"97db69c1-979d-4e94-a65e-9e4927149d5c\"\n}",
+					"raw": "{\n\t\"eventId\": 2\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -504,7 +645,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"eventId\": 61,\n\t\"code\": \"97db69c1-979d-4e94-a65e-9e4927149d5c\"\n}",
+							"raw": "{\n\t\"eventId\": 2\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -525,10 +666,37 @@
 							]
 						}
 					},
+					"status": "OK",
+					"code": 200,
 					"_postman_previewlanguage": "json",
-					"header": null,
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "156"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"9c-b2rbmla47/VWWQGbgXqmo0l1DgI\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 06 May 2020 20:19:40 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
 					"cookie": [],
-					"body": "{\n    \"eventId\": 61,\n    \"code\": \"97db69c1-979d-4e94-a65e-9e4927149d5c\",\n    \"event\": {\n        \"id\": 61,\n        \"ownerId\": 1,\n        \"eventName\": \"Test Event April 19 2020\",\n        \"startDate\": \"2020-06-15T04:00:00.000Z\",\n        \"endDate\": \"2020-09-15T04:00:00.000Z\",\n        \"repeatWeekly\": 1,\n        \"weeklySchedule\": \"0111110\",\n        \"time\": \"10:30:00\",\n        \"locationName\": \"Baruch College Library\",\n        \"lat\": 40.7404,\n        \"lng\": -73.9832,\n        \"code\": \"97db69c1-979d-4e94-a65e-9e4927149d5c\"\n    },\n    \"delete_event\": {\n        \"fieldCount\": 0,\n        \"affectedRows\": 1,\n        \"insertId\": 0,\n        \"serverStatus\": 2,\n        \"warningCount\": 0,\n        \"message\": \"\",\n        \"protocol41\": true,\n        \"changedRows\": 0\n    },\n    \"delete_users_to_private\": {\n        \"fieldCount\": 0,\n        \"affectedRows\": 0,\n        \"insertId\": 0,\n        \"serverStatus\": 2,\n        \"warningCount\": 0,\n        \"message\": \"\",\n        \"protocol41\": true,\n        \"changedRows\": 0\n    }\n}"
+					"body": "{\n    \"eventId\": 2,\n    \"delete_event\": {\n        \"fieldCount\": 0,\n        \"affectedRows\": 1,\n        \"insertId\": 0,\n        \"serverStatus\": 2,\n        \"warningCount\": 0,\n        \"message\": \"\",\n        \"protocol41\": true,\n        \"changedRows\": 0\n    }\n}"
 				}
 			]
 		},
@@ -539,7 +707,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"ownerId\": 1,\n    \"eventName\": \"Test Event 3 April 20 2020\",\n    \"startDate\": \"2020-06-15\",\n    \"endDate\": \"2020-09-15\",\n    \"repeatWeekly\": true,\n    \"weeklySchedule\": \"0111110\",\n    \"time\": \"10:30:00\",\n    \"locationName\": \"Flushing Library\",\n    \"lat\": 40.7578,\n    \"lng\": -73.8289\n}",
+					"raw": "{\n    \"ownerId\": 1,\n    \"eventName\": \"Test Event 3 April 20 2020\",\n    \"startDate\": \"2020-06-15\",\n    \"endDate\": \"2020-09-15\",\n    \"repeatWeekly\": true,\n    \"weeklySchedule\": \"0111110\",\n    \"time\": \"10:30:00\",\n    \"locationName\": \"Flushing Library\",\n    \"startLat\": 40.7,\n    \"startLng\": -73.8,\n    \"lat\": 40.7578,\n    \"lng\": -73.8289\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -606,7 +774,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"userId\": 1\n}",
+					"raw": "{\n\t\"userId\": 17\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -692,15 +860,12 @@
 		},
 		{
 			"name": "Search Public Events",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
 			"request": {
-				"method": "GET",
+				"method": "PUT",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"eventName\": \"Birthday party2\",\n\t\"startDate\": \"2020-05-21\",\n    \"endDate\": \"2020-05-21\",\n    \"repeatWeekly\": 0,\n    \"weeklySchedule\": \"1000000\",\n    \"time\": \"10:55:00\"\n}",
+					"raw": "{\n\t\"eventName\": \"Dentist appointment\",\n\t\"startDate\": \"2020-05-12\",\n    \"endDate\": \"2020-05-12\",\n    \"repeatWeekly\": 0,\n    \"weeklySchedule\": \"0010000\",\n    \"time\": \"10:30:00\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -968,6 +1133,99 @@
 			]
 		},
 		{
+			"name": "Edit Public Starting Location",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"userId\": 1,\n\t\"eventId\": 1,\n\t\"startLat\": 40.8714,\n\t\"startLng\": -73.8963\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/events/public/edit/start",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"events",
+						"public",
+						"edit",
+						"start"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Edit Public Starting Location",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"userId\": 1,\n\t\"eventId\": 1,\n\t\"startLat\": 40.8714,\n\t\"startLng\": -73.8963\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/events/public/edit/start",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"events",
+								"public",
+								"edit",
+								"start"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "250"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"fa-LZQOtSyQfmWEX0K39wTqmgNdLaE\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 06 May 2020 21:25:49 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"userId\": 1,\n    \"eventId\": 1,\n    \"startLat\": 40.8714,\n    \"startLng\": -73.8963,\n    \"users_to_public\": {\n        \"fieldCount\": 0,\n        \"affectedRows\": 1,\n        \"insertId\": 0,\n        \"serverStatus\": 2,\n        \"warningCount\": 0,\n        \"message\": \"(Rows matched: 1  Changed: 1  Warnings: 0\",\n        \"protocol41\": true,\n        \"changedRows\": 1\n    }\n}"
+				}
+			]
+		},
+		{
 			"name": "Delete Public Event",
 			"request": {
 				"method": "PUT",
@@ -1067,7 +1325,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"userId\": 1,\n\t\"code\": \"f68909a8-17cf-4de1-94cf-151aaec927e5\"\n}",
+							"raw": "{\n\t\"userId\": 1,\n\t\"code\": \"3bbe5b4c-12ee-42c8-8135-fb92db8493df\",\n\t\"startLat\": 40.7678,\n\t\"startLng\": -73.9645\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1075,7 +1333,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/api/events/join",
+							"raw": "localhost:8080/api/events/public/join",
 							"host": [
 								"localhost"
 							],
@@ -1083,6 +1341,7 @@
 							"path": [
 								"api",
 								"events",
+								"public",
 								"join"
 							]
 						}
@@ -1101,15 +1360,15 @@
 						},
 						{
 							"key": "Content-Length",
-							"value": "736"
+							"value": "763"
 						},
 						{
 							"key": "ETag",
-							"value": "W/\"2e0-WGXe6ws9vASNq1VthWJcOeaGUkM\""
+							"value": "W/\"2fb-Nqy+rYubCrdJRrmF89W+mI6tJao\""
 						},
 						{
 							"key": "Date",
-							"value": "Mon, 20 Apr 2020 11:09:41 GMT"
+							"value": "Wed, 06 May 2020 20:30:56 GMT"
 						},
 						{
 							"key": "Connection",
@@ -1117,7 +1376,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"userId\": 1,\n    \"code\": \"f68909a8-17cf-4de1-94cf-151aaec927e5\",\n    \"event\": {\n        \"id\": 27,\n        \"ownerId\": 3,\n        \"eventName\": \"Test Event 4 April 20 2020\",\n        \"startDate\": \"2020-06-15T04:00:00.000Z\",\n        \"endDate\": \"2020-09-15T04:00:00.000Z\",\n        \"repeatWeekly\": 1,\n        \"weeklySchedule\": \"0111110\",\n        \"time\": \"10:30:00\",\n        \"locationName\": \"Flushing Library\",\n        \"lat\": 40.7578,\n        \"lng\": -73.8289,\n        \"code\": \"f68909a8-17cf-4de1-94cf-151aaec927e5\",\n        \"attendees\": 1\n    },\n    \"user_to_public_insert\": {\n        \"fieldCount\": 0,\n        \"affectedRows\": 1,\n        \"insertId\": 4,\n        \"serverStatus\": 2,\n        \"warningCount\": 0,\n        \"message\": \"\",\n        \"protocol41\": true,\n        \"changedRows\": 0\n    },\n    \"update_event_attendees\": {\n        \"fieldCount\": 0,\n        \"affectedRows\": 1,\n        \"insertId\": 0,\n        \"serverStatus\": 2,\n        \"warningCount\": 0,\n        \"message\": \"(Rows matched: 1  Changed: 1  Warnings: 0\",\n        \"protocol41\": true,\n        \"changedRows\": 1\n    }\n}"
+					"body": "{\n    \"userId\": 1,\n    \"code\": \"3bbe5b4c-12ee-42c8-8135-fb92db8493df\",\n    \"startLat\": 40.7678,\n    \"startLng\": -73.9645,\n    \"event\": {\n        \"id\": 1,\n        \"ownerId\": 17,\n        \"eventName\": \"Public Event 1\",\n        \"startDate\": \"2020-06-15T04:00:00.000Z\",\n        \"endDate\": \"2020-09-15T04:00:00.000Z\",\n        \"repeatWeekly\": 1,\n        \"weeklySchedule\": \"0111110\",\n        \"time\": \"10:30:00\",\n        \"locationName\": \"Flushing Library\",\n        \"lat\": 40.7578,\n        \"lng\": -73.8289,\n        \"code\": \"3bbe5b4c-12ee-42c8-8135-fb92db8493df\",\n        \"attendees\": 2\n    },\n    \"user_to_public_insert\": {\n        \"fieldCount\": 0,\n        \"affectedRows\": 1,\n        \"insertId\": 2,\n        \"serverStatus\": 2,\n        \"warningCount\": 0,\n        \"message\": \"\",\n        \"protocol41\": true,\n        \"changedRows\": 0\n    },\n    \"update_event_attendees\": {\n        \"fieldCount\": 0,\n        \"affectedRows\": 1,\n        \"insertId\": 0,\n        \"serverStatus\": 2,\n        \"warningCount\": 0,\n        \"message\": \"(Rows matched: 1  Changed: 1  Warnings: 0\",\n        \"protocol41\": true,\n        \"changedRows\": 1\n    }\n}"
 				}
 			]
 		},
