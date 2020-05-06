@@ -21,7 +21,9 @@ edit_public.put("/", async (req, res) => {
   event = event[0]
 
   // 2. construct sql_query string AND message
-  const changes = req.body.changes
+  let changes = req.body.changes
+    delete changes.startLat
+    delete changes.startLng
   let sql_query = ""
   let message = ""
   const keys = Object.keys(changes)
@@ -29,8 +31,7 @@ edit_public.put("/", async (req, res) => {
     if (keys[i] === "code") continue // just to make sure event "code" can't be changed
 
     // sql_query
-    let value =
-      typeof changes[keys[i]] === "string" ? "'" + changes[keys[i]] + "'" : changes[keys[i]]
+    let value = typeof changes[keys[i]] === "string" ? "'" + changes[keys[i]] + "'" : changes[keys[i]]
     sql_query += keys[i] + "=" + value + ", "
 
     // message

@@ -70,14 +70,17 @@ const runQuery = queryString => {
 //     userId int not null,
 //         foreign key (userId) references users(id),
 //     eventId int not null,
-//         foreign key (eventId) references events_public(id))`)
+//         foreign key (eventId) references events_public(id),
+//     startLat double(15, 12) not null, 
+//     startLng double(15, 12) not null
+// )`)
 
 // runQuery(`CREATE TABLE notifications (
 //     id int not null auto_increment primary key,
 //     userId int not null,
 //         foreign key (userId) references users(id),
 //     eventId int not null,
-//         foreign key (eventId) references events_private(id),
+//         foreign key (eventId) references events_public(id),
 //     createdOn datetime not null,
 //     message varchar(255)
 // )`)
@@ -110,11 +113,13 @@ const runQuery = queryString => {
 
 // DELETE TABLES
 // runQuery(`DROP TABLE users_to_events`)
+// runQuery(`DROP TABLE notifications`)
 // runQuery(`DROP TABLE events`)
 // runQuery("DROP TABLE users");
 // runQuery("DROP TABLE public_events");
 // runQuery("DROP TABLE private_events");
 // runQuery("DROP TABLE users_to_public");
+// runQuery("DROP TABLE users_to_private");
 // runQuery("DROP TABLE users_info");
 // runQuery("DELETE FROM users_info WHERE firstName='john'");
 // runQuery("DELETE FROM users WHERE (email='john@email.com') and (id > 1)");
@@ -123,16 +128,27 @@ const runQuery = queryString => {
 // runQuery(`DELETE FROM notifications WHERE eventId=1`)
 // runQuery(`DELETE FROM users_to_public WHERE id=2`)
 // runQuery(`DELETE FROM users_to_public WHERE userId=9`)
+// runQuery(`TRUNCATE TABLE users_to_public`)
+// runQuery(`TRUNCATE TABLE notifications`)
+// runQuery(`SHOW TABLES`)
+// runQuery(`TRUNCATE TABLE events_public`)
+// runQuery(`TRUNCATE TABLE events_private`)
 
 // ALTER TABLES:
 // runQuery(`ALTER TABLE users_to_private DROP locationName`)
 // runQuery(`ALTER TABLE users_to_private DROP lat`)
 // runQuery(`ALTER TABLE users_to_private DROP lng`)
+// runQuery(`ALTER TABLE users_info ADD COLUMN pushToken VARCHAR(255)`)
+// runQuery(`ALTER TABLE events_public DROP startLat`)
+// runQuery(`ALTER TABLE events_public DROP startLng`)
+// runQuery(`ALTER TABLE events_private ADD COLUMN startLat double(15, 12) not null`)
+// runQuery(`ALTER TABLE events_private ADD COLUMN startLng double(15, 12) not null`)
 
 // OTHERS
 // runQuery("DESCRIBE users");
+// runQuery("DESCRIBE notifications");
 // runQuery("DESCRIBE users_info");
-// runQuery("DESCRIBE public_events");
+// runQuery("DESCRIBE events_public");
 // runQuery("DESCRIBE events_private");
 // runQuery("DESCRIBE users_to_public");
 // runQuery("DESCRIBE users_to_private");

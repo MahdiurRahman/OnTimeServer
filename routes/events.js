@@ -8,6 +8,7 @@ const create_public = require("./events_routes/create_public")
 const read_public = require("./events_routes/read_public")
 const search_public = require("./events_routes/search_public")
 const edit_public = require("./events_routes/edit_public")
+const edit_users_to_public = require("./events_routes/edit_users_to_public")
 const delete_public = require("./events_routes/delete_public")
 const join_public = require("./events_routes/join_public")
 
@@ -30,6 +31,8 @@ const join_public = require("./events_routes/join_public")
   events.use("/public/search", search_public)
 
   events.use("/public/edit", edit_public)
+
+  events.use("/public/edit/start", edit_users_to_public)
 
   events.use("/public/delete", delete_public)
 

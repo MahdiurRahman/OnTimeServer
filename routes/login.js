@@ -32,18 +32,35 @@ login.post("/", async (req, res) => {
     return
   }
 
-  // 3. Retrieve user information from users_info as well
-  let userInfo
-  try {
-    userInfo = await query(`SELECT * FROM users_info WHERE id=${user.user_info}`)
-  } catch (error) {
-    res.send({ 
-      error,
-      message: "Failed on: Retrieve user information",
-      query: `SELECT * FROM users_info WHERE id=${user.user_info}`
-    }).status(404)
-  }
-  userInfo = userInfo[0]
+  // 3. Retrive and update users_info table 
+    // 3a.Update users_info pushToken
+    let updatePushToken
+    let updatePushTokenQuery = `UPDATE users_info SET pushToken='${body.pushToken}' WHERE id=${user.user_info}`
+    try {
+      updatePushToken = await query(updatePushTokenQuery)
+    } catch (error) {
+      res.send({
+        error,
+        message: "Failed on: Update users_info pushToken",
+        query: updatePushTokenQuery
+      }).status(404)
+    }
+
+    // 3b. Retrieve user information from users_info as well
+    let userInfo
+    try {
+      userInfo = await query(`SELECT * FROM users_info WHERE id=${user.user_info}`)
+    } catch (error) {
+      res.send({ 
+        error,
+        message: "Failed on: Retrieve user information",
+        query: `SELECT * FROM users_info WHERE id=${user.user_info}`
+      }).status(404)
+    }
+    userInfo = userInfo[0]
+
+  // 4. Iterate events and setup notifications
+  
 
   // 4. Retrieve private events
   let events = {
