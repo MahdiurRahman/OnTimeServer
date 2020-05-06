@@ -38,7 +38,7 @@ join_public.post("/", async (req, res) => {
     // 3. Create entry in users_to_public table
     let user_to_public_insert
     try {
-        user_to_public_insert = await query(`INSERT INTO users_to_public (userId, eventId) VALUES (${req.body.userId}, ${event.id})`)
+        user_to_public_insert = await query(`INSERT INTO users_to_public (userId, eventId, startLat, startLng) VALUES (${req.body.userId}, ${event.id}, ${req.body.startLat}, ${req.body.startLng})`)
     } catch (error) {
         res.send(error)
     }

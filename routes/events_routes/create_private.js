@@ -22,6 +22,8 @@ create_private.post("/", async (req, res) => {
                   locationName,
                   lat,
                   lng,
+                  startLat,
+                  startLng,
                   code
               ) 
               VALUES (
@@ -35,22 +37,9 @@ create_private.post("/", async (req, res) => {
                   '${req.body.locationName ? req.body.locationName : "not provided"}',
                   ${req.body.lat},
                   ${req.body.lng},
+                  ${req.body.startLat},
+                  ${req.body.startLng},
                   '${code}'
-              )`)
-    } catch (error) {
-      res.send(error)
-    }
-  
-    // Create entry in users_to_events table
-    let user_to_private_insert
-    try {
-      user_to_private_insert = await query(`INSERT INTO users_to_private (
-                  userId,
-                  eventId
-              )
-              VALUES (
-                  ${req.body.ownerId},
-                  ${events_insert.insertId}
               )`)
     } catch (error) {
       res.send(error)

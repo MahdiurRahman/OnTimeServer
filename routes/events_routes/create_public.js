@@ -8,6 +8,11 @@ create_public.post("/", async (req, res) => {
 
   console.log("/api/events/public")
 
+  if (req.body.startLat === undefined || req.body.startLat === undefined) {
+    res.send("You are missing a startLat and startLng").status(400)
+    return
+  }
+
   // Create entry in events table
   const code = await uuid.v4()
   let event_insert
@@ -49,11 +54,15 @@ create_public.post("/", async (req, res) => {
   try {
     user_to_public_insert = await query(`INSERT INTO users_to_public (
             userId,
-            eventId
+            eventId,
+            startLat,
+            startLng
         )
         VALUES (
             ${req.body.ownerId},
-            ${event_insert.insertId}
+            ${event_insert.insertId},
+            ${req.body.startLat},
+            ${req.body.startLng}
         )`)
   } catch (error) {
     res.send(error)

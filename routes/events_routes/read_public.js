@@ -22,7 +22,8 @@ read_public.get("/", async (req, res) => {
         user_to_public.push(user_to_public[0])
         user_to_public[0] = ""
         const OR_statements = user_to_public.reduce((accumulator, event) => accumulator + ` id=${event.eventId} OR`).slice(0, -3)
-        const public_events_query = "SELECT * FROM events_public WHERE " + OR_statements
+        const public_events_query = "SELECT * FROM events_public WHERE" + OR_statements
+        console.log(public_events_query)
 
     // 3. Run query
         let public_events
