@@ -68,7 +68,7 @@ create_public.post("/", async (req, res) => {
     res.send(error)
   }
 
-  res.send({ ...req.body, id: event_insert.insertId }).status(200)
+  res.send({ ...req.body, code: code, id: event_insert.insertId }).status(200)
 })
 
 module.exports = create_public
