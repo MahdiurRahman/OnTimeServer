@@ -1,5 +1,8 @@
 const { query } = require("../database/connection");
 const testRoute = require("express").Router();
+const {timeFromGoogleMapsAPI} = require("../utilities/utilities")
+
+// timeFromGoogleMapsAPI({ lat: 40.7678, lng: -73.9645 }, { lat: 40.8714, lng: -73.8963 })
 
 testRoute.get("/", async (req, res) => {
     // try {

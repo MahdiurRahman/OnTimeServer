@@ -145,6 +145,7 @@ const runQuery = queryString => {
 // runQuery(`ALTER TABLE events_private ADD COLUMN startLng double(15, 12) not null`)
 
 // OTHERS
+// runQuery("SELECT * FROM WARNING")
 // runQuery("DESCRIBE users");
 // runQuery("DESCRIBE notifications");
 // runQuery("DESCRIBE users_info");

@@ -1,6 +1,8 @@
 const { query } = require("../database/connection")
 const login = require("express").Router()
 const bcrypt = require("bcrypt")
+const { push, combinePublicEventsToUsers } = require("../utilities/utilities")
+const schedule = require('node-schedule')
 
 // This route, the way it is, will have to make several requests to the db. We could try creating a huge query like the one from Raman's class where it gets all the user info and user event info etc. in one request.
 login.post("/", async (req, res) => {
@@ -33,7 +35,7 @@ login.post("/", async (req, res) => {
   }
 
   // 3. Retrive and update users_info table 
-    // 3a.Update users_info pushToken
+    // 3a. Update users_info pushToken
     let updatePushToken
     let updatePushTokenQuery = `UPDATE users_info SET pushToken='${body.pushToken}' WHERE id=${user.user_info}`
     try {
@@ -45,6 +47,8 @@ login.post("/", async (req, res) => {
         query: updatePushTokenQuery
       }).status(404)
     }
+
+    // push(body.pushToken)
 
     // 3b. Retrieve user information from users_info as well
     let userInfo
@@ -128,6 +132,15 @@ login.post("/", async (req, res) => {
       query: `SELECT * FROM notifications WHERE userId=${user.id}`
     })
   }
+
+  // Combine events_public with users_to_public
+  events.public = combinePublicEventsToUsers(events.public, user_to_public)
+
+  // Propogate Notifications
+    
+    // const now = new Date()
+    // console.log(`0 ${now.getMinutes() + 1} ${now.getHours()} * * *`)
+    // const job1 = schedule.scheduleJob(`0 ${now.getMinutes() + 1} ${now.getHours()} * * *`, async () => push(body.pushToken))
 
   res.send({ user, userInfo, events, notifications }).status(200)
 })
