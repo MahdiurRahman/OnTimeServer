@@ -44,7 +44,7 @@ delete_public.put("/", async (req, res) => {
     // 3. delete event
     let delete_event
     try {
-        delete_event = await query(`DELETE FROM events_private WHERE id=${body.eventId}`)
+        delete_event = await query(`DELETE FROM events_public WHERE id=${body.eventId}`)
     } catch (error) {
         res.send(error)
     }
