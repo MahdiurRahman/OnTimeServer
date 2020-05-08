@@ -15,7 +15,6 @@ edit_users_to_public.put("/", async (req, res) => {
     }
     users_to_public_query = users_to_public_query.slice(0, -2)
     users_to_public_query += ` WHERE userId=${body.userId} AND eventId=${body.eventId}`
-    console.log(users_to_public_query)
 
     // Run query
     let users_to_public
