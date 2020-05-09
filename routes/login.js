@@ -1,7 +1,7 @@
 const { query } = require("../database/connection")
 const login = require("express").Router()
 const bcrypt = require("bcrypt")
-const { push, combinePublicEventsToUsers } = require("../utilities/utilities")
+const { combinePublicEventsToUsers, preprocessPublicEvents, schedulePushNotifications } = require("../utilities/utilities")
 const schedule = require('node-schedule')
 
 // This route, the way it is, will have to make several requests to the db. We could try creating a huge query like the one from Raman's class where it gets all the user info and user event info etc. in one request.
@@ -137,10 +137,9 @@ login.post("/", async (req, res) => {
   events.public = combinePublicEventsToUsers(events.public, user_to_public)
 
   // Propogate Notifications
-    
-    // const now = new Date()
-    // console.log(`0 ${now.getMinutes() + 1} ${now.getHours()} * * *`)
-    // const job1 = schedule.scheduleJob(`0 ${now.getMinutes() + 1} ${now.getHours()} * * *`, async () => push(body.pushToken))
+  // const processedPublicEvents = preprocessPublicEvents(events.public)
+  // const eventsForNotifications = events.private.concat(processedPublicEvents)
+  schedulePushNotifications(events.private)
 
   res.send({ user, userInfo, events, notifications }).status(200)
 })
