@@ -11,6 +11,7 @@ const edit_public = require("./events_routes/edit_public")
 const edit_users_to_public = require("./events_routes/edit_users_to_public")
 const delete_public = require("./events_routes/delete_public")
 const join_public = require("./events_routes/join_public")
+const leave_public = require("./events_routes/leave_public")
 
 // PRIVATE:
 
@@ -37,5 +38,7 @@ const join_public = require("./events_routes/join_public")
   events.use("/public/delete", delete_public)
 
   events.use("/public/join", join_public)
+
+  events.use("/public/leave", leave_public)
 
 module.exports = events
