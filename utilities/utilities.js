@@ -6,17 +6,22 @@ const GoogleMapsApiKey = process.env.GOOGLE_MAPS_API_KEY
 // Helpers
     const parseGoogleMapsMinutesText = text => {
         text = text.split(" ")
-        const hours = parseInt(text[0])
-        const minutes = parseInt(text[2])
+        let hours = 0, minutes = 0;
+        if (text.length === 4) {
+            hours = parseInt(text[0])
+            minutes = parseInt(text[2])
+        }
+        else {
+            minutes = parseInt(text[0])
+        }
         return (minutes * 60) + (hours * 60 * 60)
     }
 
     const timeFromGoogleMapsAPI = async (origin, destination) => {
-        const url = `https://maps.googleapis.com/maps/api/directions/json?origin=${origin.lat},${origin.lng}&destination=${destination.lat},${destination.lng}&mode=transit&key=${GoogleMapsApiKey}`
+        const url = `https://maps.googleapis.com/maps/api/directions/json?origin=${origin.startLat},${origin.startLng}&destination=${destination.lat},${destination.lng}&mode=transit&key=${GoogleMapsApiKey}`
         const { data } = await axios.get(url)
-        const minutesString = parseGoogleMapsMinutesText(data.routes[0].legs[0].duration.text)
-        const minutesInt = parseInt(minutesString)
-        return minutesInt * 60
+        const answer = parseGoogleMapsMinutesText(data.routes[0].legs[0].duration.text)
+        return answer
     }
 
     const eventOccursToday = (startDate, endDate, weeklySchedule) => {
@@ -48,9 +53,8 @@ const GoogleMapsApiKey = process.env.GOOGLE_MAPS_API_KEY
 
 // Scheduling
     const schedulePushNotifications = async (events, pushToken) => {
-        console.log("schedulePushNotifications:", events)
-        events.forEach(async event => {
-            // determine typical travel time, API call
+        for (let i = 0; i < events.length; i++) {
+            let event = events[i]
             let {
                 startDate,
                 endDate, 
@@ -58,7 +62,7 @@ const GoogleMapsApiKey = process.env.GOOGLE_MAPS_API_KEY
                 time,  
                 startLat, 
                 startLng, 
-                lat, 
+                lat,
                 lng
             } = event
             startDate = JSON.stringify(startDate)
@@ -68,19 +72,18 @@ const GoogleMapsApiKey = process.env.GOOGLE_MAPS_API_KEY
                 const timeArray = calculatePushTime(militaryTimeToSeconds(time), (currentDuration + 3600))
                 schedulePush1(event, timeArray, pushToken)
             }
-        })
+        }
     }
 
     const schedulePush1 = async (event, timeArray, pushToken) => {
-        console.log("schedulePush1:", timeArray)
         // calculate time for push 1
         const now = new Date()
         const year = now.getFullYear()
         const month = now.getMonth()
         const day = now.getDate()
         const [hour, minute, second] = timeArray
-        const pushDate = new Date(year, month, day, hour, minute, second)
         // node-scheduler 1
+        const pushDate = new Date(year, month, day, hour, minute, 0)
         schedule.scheduleJob(pushDate, () => schedulePush2(event, pushToken))
     }
 
@@ -100,9 +103,8 @@ const GoogleMapsApiKey = process.env.GOOGLE_MAPS_API_KEY
         const duration = await timeFromGoogleMapsAPI({startLat, startLng}, {lat, lng})
         const timeArray = calculatePushTime(militaryTimeToSeconds(time), (duration + 1800))
         const [hour, minute, second] = timeArray
-        console.log("schedulePush2:", timeArray)
-        const pushDate = new Date(year, month, day, hour, minute, second)
         // node-scheduler 2
+        const pushDate = new Date(year, month, day, hour, minute, 0)
         schedule.scheduleJob(pushDate, () => pushNotificaiton(event, pushToken))
     }
 
@@ -112,7 +114,7 @@ const GoogleMapsApiKey = process.env.GOOGLE_MAPS_API_KEY
             time,
             locationName
         } = event
-        console.log(`pushNotificaiton -> The event "${eventName}" starts at "${time}" at "${locationName}"`)
+        // console.log(`pushNotificaiton -> The event "${eventName}" starts at "${time}" at "${locationName}"`)
         const message = {
             to: pushToken,
             sound: 'default',

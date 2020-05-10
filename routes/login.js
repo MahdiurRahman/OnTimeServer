@@ -137,9 +137,9 @@ login.post("/", async (req, res) => {
   events.public = combinePublicEventsToUsers(events.public, user_to_public)
 
   // Propogate Notifications
-  // const processedPublicEvents = preprocessPublicEvents(events.public)
-  // const eventsForNotifications = events.private.concat(processedPublicEvents)
-  schedulePushNotifications(events.private)
+  const processedPublicEvents = preprocessPublicEvents(events.public)
+  const eventsForNotifications = events.private.concat(processedPublicEvents)
+  schedulePushNotifications(eventsForNotifications)
 
   res.send({ user, userInfo, events, notifications }).status(200)
 })
