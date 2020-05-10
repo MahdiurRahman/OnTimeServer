@@ -18,7 +18,9 @@ password.put("/", async (req, res) => {
     // 2. confirm password
     const result = await bcrypt.compare(body.password, user.password)
     if (!result) {
-        res.send(`Wrong password buddy`)
+        res.send({
+            authError: "Password is incorrect"
+        })
         return
     }
 
