@@ -6,7 +6,7 @@ leave_public.delete("/", async (req, res) => {
 
     const body = req.body
     // 1. check if is owner; if yes, then can't leave, must delete
-    const find_event_query = `SELECT * FROM events_public WHERE id=${eventId}`
+    const find_event_query = `SELECT * FROM events_public WHERE id=${body.eventId}`
     let event
     try {
         event = await query(find_event_query)
@@ -17,8 +17,6 @@ leave_public.delete("/", async (req, res) => {
             query: find_event_query
         }).status(400)
     }
-    event = event[0]
-
     if (event.ownerId === body.userId) {
         res.send({
             message: "Error: owner attempting to leave own event. Should delete instead."
