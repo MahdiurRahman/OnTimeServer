@@ -23,6 +23,7 @@ leave_public.delete("/", async (req, res) => {
         }).status(404)
         return
     }
+    event = event[0]	
 
     // 2. Delete entry in table 'users_to_public' to leave event
     const leave_event_query = `DELETE FROM users_to_public WHERE userId=${body.userId} AND eventId=${body.eventId}`
