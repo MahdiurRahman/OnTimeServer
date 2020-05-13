@@ -139,7 +139,7 @@ login.post("/", async (req, res) => {
   // Propogate Notifications
   const processedPublicEvents = preprocessPublicEvents(events.public)
   const eventsForNotifications = events.private.concat(processedPublicEvents)
-  schedulePushNotifications(eventsForNotifications)
+  schedulePushNotifications(eventsForNotifications, body.pushToken)
 
   res.send({ user, userInfo, events, notifications }).status(200)
 })
