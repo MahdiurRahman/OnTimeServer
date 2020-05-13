@@ -53,6 +53,7 @@ const GoogleMapsApiKey = process.env.GOOGLE_MAPS_API_KEY
 
 // Scheduling
     const schedulePushNotifications = async (events, pushToken) => {
+        console.log("schedulePushNotifications:", pushToken)
         for (let i = 0; i < events.length; i++) {
             let event = events[i]
             let {
@@ -76,6 +77,7 @@ const GoogleMapsApiKey = process.env.GOOGLE_MAPS_API_KEY
     }
 
     const schedulePush1 = async (event, timeArray, pushToken) => {
+        console.log("schedulePush1:", event, timeArray, pushToken)
         // calculate time for push 1
         const now = new Date()
         const year = now.getFullYear()
@@ -88,6 +90,7 @@ const GoogleMapsApiKey = process.env.GOOGLE_MAPS_API_KEY
     }
 
     const schedulePush2 = async (event, pushToken) => {
+        console.log("schedulePush2:", event, pushToken)
         const {
             startLat,
             startLng,
@@ -109,6 +112,7 @@ const GoogleMapsApiKey = process.env.GOOGLE_MAPS_API_KEY
     }
 
     const pushNotificaiton = async (event, pushToken) => {
+        console.log("pushNotificaiton:", event, pushToken)
         const {
             eventName,
             time,
