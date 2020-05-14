@@ -70,7 +70,7 @@ const GoogleMapsApiKey = process.env.GOOGLE_MAPS_API_KEY
             endDate = JSON.stringify(endDate)
             if (eventOccursToday(startDate, endDate, weeklySchedule)) {
                 const currentDuration = await timeFromGoogleMapsAPI({startLat, startLng}, {lat, lng})
-                const timeArray = calculatePushTime(militaryTimeToSeconds(time), (currentDuration + 3600))
+                const timeArray = calculatePushTime(militaryTimeToSeconds(time), (currentDuration + 300))
                 schedulePush1(event, timeArray, pushToken)
             }
         }
@@ -86,6 +86,7 @@ const GoogleMapsApiKey = process.env.GOOGLE_MAPS_API_KEY
         const [hour, minute, second] = timeArray
         // node-scheduler 1
         const pushDate = new Date(year, month, day, hour, minute, 0)
+        console.log("schedulePush1:", event, timeArray, pushDate, pushToken)
         schedule.scheduleJob(pushDate, () => schedulePush2(event, pushToken))
     }
 
@@ -104,7 +105,7 @@ const GoogleMapsApiKey = process.env.GOOGLE_MAPS_API_KEY
         const month = now.getMonth()
         const day = now.getDate()
         const duration = await timeFromGoogleMapsAPI({startLat, startLng}, {lat, lng})
-        const timeArray = calculatePushTime(militaryTimeToSeconds(time), (duration + 1800))
+        const timeArray = calculatePushTime(militaryTimeToSeconds(time), (duration + 300))
         const [hour, minute, second] = timeArray
         // node-scheduler 2
         const pushDate = new Date(year, month, day, hour, minute, 0)
