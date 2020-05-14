@@ -42,6 +42,9 @@ const GoogleMapsApiKey = process.env.GOOGLE_MAPS_API_KEY
 
     const calculatePushTime = (eventTime, moveBack) => {
         let pushTime = eventTime - moveBack;
+        if (pushTime <= 0) {
+            pushTime = 86400 - pushTime
+        }
         let timeArray = []
         timeArray.push(Math.floor(pushTime / 3600)) // hours
         pushTime %= 3600
