@@ -145,8 +145,14 @@ const GoogleMapsApiKey = process.env.GOOGLE_MAPS_API_KEY
         const [hour, minute, second] = timeArray
         // node-scheduler 2
         const pushDate = new Date(year, month, day, hour, minute, 0)
-        console.log("schedulePush2:", event.eventName, timeArray, pushDate, pushToken)
-        schedule.scheduleJob(pushDate, () => pushNotificaiton(event, pushToken))
+        if (now < pushDate) {
+            console.log("schedulePush2: (AFTER)", event.eventName, timeArray, pushDate, pushToken)
+            schedule.scheduleJob(pushDate, () => pushNotificaiton(event, pushToken))
+        }
+        else {
+            console.log("schedulePush2: (NOW)", event.eventName, timeArray, now, pushToken)
+            pushNotificaiton(event, pushToken)
+        }
     }
 
     const pushNotificaiton = async (event, pushToken) => {
