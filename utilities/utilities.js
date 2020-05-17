@@ -5,6 +5,7 @@ const GoogleMapsApiKey = process.env.GOOGLE_MAPS_API_KEY
 
 // Helpers
     const parseGoogleMapsMinutesText = text => {
+        console.log("parseGoogleMapsMinutesText", text)
         text = text.split(" ")
         let hours = 0, minutes = 0;
         if (text.length === 4) {
@@ -18,8 +19,14 @@ const GoogleMapsApiKey = process.env.GOOGLE_MAPS_API_KEY
     }
 
     const timeFromGoogleMapsAPI = async (origin, destination) => {
-        const url = `https://maps.googleapis.com/maps/api/directions/json?origin=${origin.startLat},${origin.startLng}&destination=${destination.lat},${destination.lng}&mode=transit&key=${GoogleMapsApiKey}`
-        const { data } = await axios.get(url)
+        let url = `https://maps.googleapis.com/maps/api/directions/json?origin=${origin.startLat},${origin.startLng}&destination=${destination.lat},${destination.lng}&mode=transit&key=${GoogleMapsApiKey}`
+        let data = await axios.get(url)
+        data = data.data
+        if (data.available_travel_modes) {
+            url = `https://maps.googleapis.com/maps/api/directions/json?origin=${origin.startLat},${origin.startLng}&destination=${destination.lat},${destination.lng}&key=${GoogleMapsApiKey}`
+            data = await axios.get(url)
+            data = data.data
+        }
         const answer = parseGoogleMapsMinutesText(data.routes[0].legs[0].duration.text)
         return answer
     }
@@ -60,6 +67,8 @@ const GoogleMapsApiKey = process.env.GOOGLE_MAPS_API_KEY
         for (let i = 0; i < events.length; i++) {
             let event = events[i]
             let {
+                eventName,
+                locationName,
                 startDate,
                 endDate, 
                 weeklySchedule, 
@@ -73,14 +82,39 @@ const GoogleMapsApiKey = process.env.GOOGLE_MAPS_API_KEY
             endDate = JSON.stringify(endDate)
             if (eventOccursToday(startDate, endDate, weeklySchedule)) {
                 const currentDuration = await timeFromGoogleMapsAPI({startLat, startLng}, {lat, lng})
-                const timeArray = calculatePushTime(militaryTimeToSeconds(time), (currentDuration + 300))
-                schedulePush1(event, timeArray, pushToken)
+                // if (currentDuration !== null) {
+                    console.log("MAPS-API PASSED")
+                    const timeArray = calculatePushTime(militaryTimeToSeconds(time), (currentDuration + 600))
+                    schedulePush1(event, timeArray, pushToken)
+                // }
+                // else {
+                //     console.log("MAPS-API FAILED")
+                //     const message = {
+                //         to: pushToken,
+                //         sound: 'default',
+                //         title: eventName,
+                //         body: `ERROR: The event "${eventName}" starting at "${time}" at "${locationName}" did not return a valid travel duration`,
+                //         data: { 
+                //             data: event,
+                //             status: false,
+                //         },
+                //         _displayInForeground: true,
+                //         vibrate: true
+                //     };
+                //     console.log(message)
+                //     const response = await axios.post('https://exp.host/--/api/v2/push/send', message, {
+                //         headers: {
+                //             Accept: 'application/json',
+                //             'Accept-encoding': 'gzip, deflate',
+                //             'Content-Type': 'application/json',
+                //         }
+                //     })
+                // }
             }
         }
     }
 
     const schedulePush1 = async (event, timeArray, pushToken) => {
-        console.log("schedulePush1:", event, timeArray, pushToken)
         // calculate time for push 1
         const now = new Date()
         const year = now.getFullYear()
@@ -89,12 +123,11 @@ const GoogleMapsApiKey = process.env.GOOGLE_MAPS_API_KEY
         const [hour, minute, second] = timeArray
         // node-scheduler 1
         const pushDate = new Date(year, month, day, hour, minute, 0)
-        console.log("schedulePush1:", event, timeArray, pushDate, pushToken)
+        console.log("schedulePush1:", event.eventName, timeArray, pushDate, pushToken)
         schedule.scheduleJob(pushDate, () => schedulePush2(event, pushToken))
     }
 
     const schedulePush2 = async (event, pushToken) => {
-        console.log("schedulePush2:", event, pushToken)
         const {
             startLat,
             startLng,
@@ -112,11 +145,12 @@ const GoogleMapsApiKey = process.env.GOOGLE_MAPS_API_KEY
         const [hour, minute, second] = timeArray
         // node-scheduler 2
         const pushDate = new Date(year, month, day, hour, minute, 0)
+        console.log("schedulePush2:", event.eventName, timeArray, pushDate, pushToken)
         schedule.scheduleJob(pushDate, () => pushNotificaiton(event, pushToken))
     }
 
     const pushNotificaiton = async (event, pushToken) => {
-        console.log("pushNotificaiton:", event, pushToken)
+        console.log("pushNotificaiton:", event.eventName, pushToken)
         const {
             eventName,
             time,
@@ -128,7 +162,10 @@ const GoogleMapsApiKey = process.env.GOOGLE_MAPS_API_KEY
             sound: 'default',
             title: eventName,
             body: `The event "${eventName}" starts at "${time}" at "${locationName}"`,
-            data: { data: event },
+            data: { 
+                data: event,
+                status: true,
+            },
             _displayInForeground: true,
         };
         const response = await axios.post('https://exp.host/--/api/v2/push/send', message, {
