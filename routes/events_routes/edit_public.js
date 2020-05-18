@@ -1,5 +1,6 @@
 const { query } = require("../../database/connection")
 const edit_public = require("express").Router()
+const axios = require("axios")
 
 edit_public.put("/", async (req, res) => {
   console.log("/api/events/public/edit")
@@ -62,27 +63,74 @@ edit_public.put("/", async (req, res) => {
     res.send({ error: error })
   }
 
-  // 5. iterate through "users" variable and create entries in notifications
-  let current_time
+  // use user id's to get pushTokens
   if (users.length > 0) {
-    current_time = new Date()
-    current_time = current_time.toJSON().replace("T", " ").slice(0, -5)
-    for (let i = 0; i < users.length; i++) {
-      try {
-        query(`INSERT INTO notifications (
-                    userId,
-                    eventId, 
-                    createdOn, 
-                    message) 
-                VALUES (
-                    ${users[i].userId}, 
-                    ${req.body.eventId}, 
-                    '${current_time}', 
-                    '${message}')`)
-      } catch (error) {
-        res.send({ error: error })
+    // Get entries from users table
+      // generate Query
+      let OR_statements = ""
+      for (let i = 0; i < users.length; i++) {
+        OR_statements += `id=${users[i].userId} OR `
       }
-    }
+      OR_statements = OR_statements.slice(0, -4)
+      const users_query = `SELECT * FROM users WHERE ${OR_statements}`
+      
+      let users_;
+      try {
+        users_ = await query(users_query)
+      } catch (error) {
+        res.send({
+          error,
+          message: "Failed on: Get entries from users table",
+          query: users_query
+        })
+      }
+      
+    // Get entries from users_info table
+      // generate query
+      OR_statements = ""
+      for (let i = 0; i < users_.length; i++) {
+        OR_statements += `id=${users_[i].user_info} OR `
+      }
+      OR_statements = OR_statements.slice(0, -4)
+      const users_info_query = `SELECT * FROM users_info WHERE ${OR_statements}`
+      console.log(users_info_query)
+
+      let usersInfo;
+      try {
+        usersInfo = await query(users_info_query)
+      } catch (error) {
+        res.send({
+          error,
+          message: "Failed on: Get entries from users_info table",
+          query: users_info_query
+        })
+      }
+      
+    // Propogate push notifications
+      let pushResponse
+      for (let i = 0; i < usersInfo.length; i++) {
+        let pushToken = usersInfo[i].pushToken
+        if (pushToken !== null && pushToken !== undefined) {
+          const info = {
+            to: pushToken,
+            sound: 'default',
+            title: `Event Changed!`,
+            body: message,
+            data: { 
+              data: message,
+              status: false,
+            },
+            _displayInForeground: true,
+          };
+          pushResponse = await axios.post('https://exp.host/--/api/v2/push/send', info, {
+            headers: {
+                Accept: 'application/json',
+                'Accept-encoding': 'gzip, deflate',
+                'Content-Type': 'application/json',
+            }
+          })
+        }
+      }
   }
   
   // get updated event
