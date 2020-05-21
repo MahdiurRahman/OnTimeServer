@@ -92,6 +92,7 @@ join_public.post("/", async (req, res) => {
         event,
         user: user_to_public_entry[0]
     }
+    console.log([dummyObject])
     const processed_event = preprocessPublicEvents([dummyObject])
     schedulePushNotifications(processed_event, users_info.pushToken)
 

@@ -198,6 +198,7 @@ const GoogleMapsApiKey = process.env.GOOGLE_MAPS_API_KEY
 
     const preprocessPublicEvents = publicEvents => {
         return publicEvents.map(publicEvent => {
+            console.log(publicEvent)
             const {
                 eventName,
                 startDate,
