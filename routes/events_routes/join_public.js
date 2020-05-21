@@ -87,10 +87,13 @@ join_public.post("/", async (req, res) => {
         })
     }
 
-    console.log(users_info)
-
     // 7. Issue new notification setting
-    schedulePushNotifications([event], users_info.pushToken)
+    const dummyObject = {
+        event,
+        user: user_to_public_entry[0]
+    }
+    const processed_event = preprocessPublicEvents([dummyObject])
+    schedulePushNotifications(processed_event, users_info.pushToken)
 
     // Get user's users_info entry
     // let users_info_query = `SELECT * FROM users_info WHERE id=${}`
