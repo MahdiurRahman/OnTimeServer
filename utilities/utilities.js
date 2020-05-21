@@ -84,7 +84,8 @@ const GoogleMapsApiKey = process.env.GOOGLE_MAPS_API_KEY
                 const currentDuration = await timeFromGoogleMapsAPI({startLat, startLng}, {lat, lng})
                 // if (currentDuration !== null) {
                     console.log("MAPS-API PASSED")
-                    const timeArray = calculatePushTime(militaryTimeToSeconds(time), (currentDuration + 600))
+                    // const timeArray = calculatePushTime(militaryTimeToSeconds(time), (currentDuration + 600))
+                    const timeArray = calculatePushTime(militaryTimeToSeconds(time), (600 + 600))
                     schedulePush1(event, timeArray, pushToken)
                 // }
                 // else {
@@ -141,7 +142,8 @@ const GoogleMapsApiKey = process.env.GOOGLE_MAPS_API_KEY
         const month = now.getMonth()
         const day = now.getDate()
         const duration = await timeFromGoogleMapsAPI({startLat, startLng}, {lat, lng})
-        const timeArray = calculatePushTime(militaryTimeToSeconds(time), (duration + 300))
+        // const timeArray = calculatePushTime(militaryTimeToSeconds(time), (duration + 300))
+        const timeArray = calculatePushTime(militaryTimeToSeconds(time), (780 + 300))
         const [hour, minute, second] = timeArray
         // node-scheduler 2
         const pushDate = new Date(year, month, day, hour, minute, 0)
