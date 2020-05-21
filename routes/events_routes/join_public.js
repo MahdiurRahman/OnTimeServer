@@ -1,5 +1,10 @@
 const { query } = require("../../database/connection")
 const join_public = require("express").Router()
+const {
+    combinePublicEventsToUsers,
+    preprocessPublicEvents,
+    schedulePushNotifications
+} = require("../../utilities/utilities")
 
 join_public.post("/", async (req, res) => {
     console.log("/api/events/public/join")
@@ -54,6 +59,41 @@ join_public.post("/", async (req, res) => {
     } catch (error) {
         res.send(error)
     }
+
+    // 5. Get user user-table entry
+    let users_entry_query = `SELECT * FROM users WHERE id=${req.body.userId}`
+    let users_entry
+    try {
+        users_entry = await query(users_entry_query)
+    } catch (error) {
+        res.send({
+            error,
+            message: "Failed on: Get user's pushToken",
+            query: users_entry_query
+        })
+    }
+    users_entry = users_entry[0]
+    
+    // 6. Get users_info entry
+    let users_info_query = `SELECT * FROM users_info WHERE id=${users_entry.user_info}`
+    let users_info
+    try {
+        users_info = await query(users_info_query)
+    } catch (error) {
+        res.send({
+            error,
+            message: "Failed on: Get users_info entry",
+            query: users_info_query
+        })
+    }
+
+    console.log(users_info)
+
+    // 7. Issue new notification setting
+    schedulePushNotifications([event], users_info.pushToken)
+
+    // Get user's users_info entry
+    // let users_info_query = `SELECT * FROM users_info WHERE id=${}`
   
     res.send({
         ...req.body, 
