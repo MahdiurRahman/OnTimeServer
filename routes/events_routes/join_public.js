@@ -90,9 +90,11 @@ join_public.post("/", async (req, res) => {
     // 7. Issue new notification setting
     const dummyObject = {
         event,
-        user: user_to_public_entry[0]
+        user: {
+            startLat: req.body.startLat,
+            startLng: req.body.startLng
+        }
     }
-    console.log([dummyObject])
     const processed_event = preprocessPublicEvents([dummyObject])
     schedulePushNotifications(processed_event, users_info.pushToken)
 
